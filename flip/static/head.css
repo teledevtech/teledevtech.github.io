@@ -44,7 +44,7 @@ main {
     animation: visible 3s forwards;
     padding: 50px 80px 0px 80px;
     max-width: 732px;
-    margin: 0 auto;
+    margin: -100px auto;
     position: relative;
     padding: 21px 0;
     width: 100%;
