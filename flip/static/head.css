@@ -10,7 +10,6 @@
 .montserrat {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
   font-style: normal;
 }
 
@@ -18,8 +17,6 @@ body,html {
     padding: 0;
     margin: 0;
     min-height: 100%;
-    background: var(--tg-theme-bg-color);
-    font-color: var(--tg-theme-text-color);
 }
 
 main {
@@ -70,7 +67,7 @@ img {
     object-fit: contain;
 }
 
-.container {
+.hint {
     font-family: 'Antonio';
     width: 80vw;
     height: 80vh;
@@ -80,6 +77,7 @@ img {
     overflow: hidden;
     position: relative;
     text-align: center;
+    color: var(--tg-theme-hint-color);
 }
 
 @keyframes moveUp {
