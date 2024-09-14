@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/head.css">
 </head>
-<body style="background: var(--tg-theme-bg-color);color: var(--tg-theme-text-color);">
+<body style="background: var(--tg-theme-bg-color);font-color: var(--tg-theme-text-color);">
     <main>
         <p class="main">♻️FLIP♻️</p><br>
     </main>
     <div class="all">
-        <div class="other">
+        <div class="hint">
             <p><span class="flip">♻️FLIP♻️</span> — это в первую очередь про что-то новое.</p>
             <p>Узнавай про новые бренды или находи что-то новое про любимые. Тут вы можете ознакомиться со всеми статьями про бренды от редакторов FLIP. Приятного чтения.</p>
         </div>
@@ -21,7 +21,6 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
         tg.MainButton.show();
-        tg.SecondaryButton.show();
     </script>
 </body>
 </html>
