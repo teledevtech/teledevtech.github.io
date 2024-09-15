@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/head.css">
+</head>
+<body style="background: var(--tg-theme-bg-color);color: var(--tg-theme-text-color);">
+    <main>
+        <p class="main">♻️FLIP♻️</p><br>
+    </main>
+    <div>
+        <div class="toolbar" id="toolbar">
+            <button onclick="formatText('bold')">B</button>
+            <button onclick="formatText('italic')">I</button>
+            <button onclick="formatText('underline')">U</button>
+            <button onclick="formatText('strikeThrough')">S</button>
+            <button onclick="formatText('insertOrderedList')">1.</button>
+            <button onclick="formatText('insertUnorderedList')">•</button>
+            <button onclick="addLink()">Link</button>
+            <button onclick="addImage()">Image</button>
+        </div>
+    </div>
+    <div class="all">
+        <div id="start" class="editor" contenteditable="true">
+            <p>Нажмите здесь и начните вводить текст...</p>
+        </div>
+    </div>
+    <script src="static/st.js"></script>
+    <script>
+        document.querySelector('.editor').addEventListener('focus', function() {var document.getElementById('start').value = '';);
+        document.addEventListener('selectionchange', function () {const selection = window.getSelection();if (selection.rangeCount > 0 && !selection.isCollapsed) {const range = selection.getRangeAt(0);const selectedText = range.toString().trim(); if (selectedText.length > 0) {toggleToolbar(true);} else {toggleToolbar(false);}} else {toggleToolbar(false);}});
+        document.querySelector('.editor').addEventListener('focus', function() {toggleToolbar(true););
+        document.querySelector('.editor').addEventListener('blur', function() {const selection = window.getSelection();if (selection.isCollapsed) {toggleToolbar(false);}});
+        document.querySelector('.editor').addEventListener('keypress', function(event) {if (event.key === 'Enter') {document.execCommand('formatBlock', false, 'p');});
+        document.querySelector('.editor').addEventListener('focus', function() {if (this.innerHTML.trim() === '') {this.innerHTML = '<p><br></p>';}});
+    </script>
+    <script>
+        function formatText(command) {document.execCommand(command, false, null);}
+        function addLink() {const url = prompt("Введите URL:");if (url) {document.execCommand('createLink', false, url);}}
+        function addImage() {const url = prompt("Введите URL изображения:");if (url) {document.execCommand('insertImage', false, url);}}
+        function toggleToolbar(show) {const toolbar = document.getElementById('toolbar');toolbar.style.visibility = show ? 'visible' : 'hidden';}
+    </script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.MainButton.show();
+        tg.MainButton.setText('Опубликовать');
+        function callback() {
+            const bodyContent = document.body.innerHTML;
+            tg.sendData(bodyContent)
+        }
+        tg.MainButton.onClick(callback);
+    </script>
+</body>
+</html>
