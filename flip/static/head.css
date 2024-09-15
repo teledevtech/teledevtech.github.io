@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .antonio {
     font-family: "Antonio", sans-serif;
@@ -7,10 +6,10 @@
     font-style: normal;
 }
 
-body,html {
+body, html {
     padding: 0;
     margin: 0;
-    min-height: 100%;
+    align-items: center;
 }
 
 main {
@@ -26,8 +25,8 @@ main {
     font-size: 80px;
     text-align: center;
     animation: moveUp 3s forwards;
+    opacity: 0;
 }
-
 
 .all {
     font-family: "Helvetica";
@@ -40,7 +39,8 @@ main {
     padding: 21px 0;
     width: 100%;
     flex-grow: 1;
-    font-size: 13px;
+    font-size: 12px;
+    opacity: 0;
 }
 
 .flip {
@@ -56,19 +56,71 @@ main {
 
 img {
     position: relative;
-    max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    max-height: 690px;
+}
+
+.editor {outline:none;}
+
+
+.toolbar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    visibility: hidden;
+}
+
+.toolbar button {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toolbar button:hover {background-color: #ddd;}
+
+.editor {
+    padding: 20px;
+    min-height: 300px;
+    max-height: 600px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+}
+
+.editor p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.editor p:empty::before {
+    content: attr(placeholder);
+    color: #888;
+}
+
+.editor:focus {outline: none;}
+
+.editor img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
 }
 
 @keyframes moveUp {
     0% {
         transform: translateY(+3vh) scale(1);
-        opacity: 1;
+        opacity: 0;
     }
     100% {
         transform: translateY(-4vh) scale(0.8);
-        opacity: 1 scale(0.5);
+        opacity: 1;
     }
 }
 
@@ -79,6 +131,6 @@ img {
     }
     100% {
         transform: translateY(0) scale(1);
-        opacity: 1 scale(0.5);
+        opacity: 1;
     }
 }
