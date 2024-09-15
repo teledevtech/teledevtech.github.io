@@ -29,7 +29,6 @@
     </div>
     <script src="https://teledevtech.github.io/flip/static/st.js"></script>
     <script>
-        document.querySelector('.editor').addEventListener('focus', function() {var document.getElementById('start').value = '';);
         document.addEventListener('selectionchange', function () {const selection = window.getSelection();if (selection.rangeCount > 0 && !selection.isCollapsed) {const range = selection.getRangeAt(0);const selectedText = range.toString().trim(); if (selectedText.length > 0) {toggleToolbar(true);} else {toggleToolbar(false);}} else {toggleToolbar(false);}});
         document.querySelector('.editor').addEventListener('focus', function() {toggleToolbar(true););
         document.querySelector('.editor').addEventListener('blur', function() {const selection = window.getSelection();if (selection.isCollapsed) {toggleToolbar(false);}});
@@ -51,7 +50,7 @@
         function callback() {
             const bodyContent = document.querySelector('all');
             tg.close();
-            tg.sendData(bodyContent);
+            tg.sendData(bodyContent);[
         }
         tg.MainButton.onClick(callback);
     </script>
