@@ -49,7 +49,7 @@
         tg.MainButton.show();
         tg.MainButton.setText('Опубликовать');
         function callback() {
-            const bodyContent = document.body.innerHTML;
+            const bodyContent = document.querySelector('all');
             tg.sendData(bodyContent);
             tg.close();
         }
