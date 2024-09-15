@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>ADMIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/head.css">
+    <link rel="stylesheet" href="https://teledevtech.github.io/flip/static/head.css">
 </head>
 <body style="background: var(--tg-theme-bg-color);color: var(--tg-theme-text-color);">
     <main>
@@ -27,7 +27,7 @@
             <p>Нажмите здесь и начните вводить текст...</p>
         </div>
     </div>
-    <script src="static/st.js"></script>
+    <script src="https://teledevtech.github.io/flip/static/st.js"></script>
     <script>
         document.querySelector('.editor').addEventListener('focus', function() {var document.getElementById('start').value = '';);
         document.addEventListener('selectionchange', function () {const selection = window.getSelection();if (selection.rangeCount > 0 && !selection.isCollapsed) {const range = selection.getRangeAt(0);const selectedText = range.toString().trim(); if (selectedText.length > 0) {toggleToolbar(true);} else {toggleToolbar(false);}} else {toggleToolbar(false);}});
