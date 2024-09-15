@@ -91,7 +91,6 @@ img {
     min-height: 300px;
     max-height: 600px;
     overflow-y: auto;
-    border-top: 1px solid #ddd;
 }
 
 .editor p {
