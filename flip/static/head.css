@@ -61,8 +61,10 @@ img {
     max-height: 690px;
 }
 
-.editor {outline:none;}
-
+.editor {
+    outline:none;
+    font-size: 13px;
+}
 
 .toolbar {
     background-color: #f0f0f0;
