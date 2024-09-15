@@ -50,8 +50,8 @@
         tg.MainButton.setText('Опубликовать');
         function callback() {
             const bodyContent = document.querySelector('all');
-            tg.sendData(bodyContent);
             tg.close();
+            tg.sendData(bodyContent);
         }
         tg.MainButton.onClick(callback);
     </script>
