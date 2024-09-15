@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>ADMIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://teledevtech.github.io/flip/static/head.css">
+    <link rel="stylesheet" href="static/head.css">
 </head>
 <body style="background: var(--tg-theme-bg-color);color: var(--tg-theme-text-color);">
     <main>
@@ -12,14 +12,18 @@
     </main>
     <div>
         <div class="toolbar" id="toolbar">
-            <button onclick="formatText('bold')">B</button>
-            <button onclick="formatText('italic')">I</button>
-            <button onclick="formatText('underline')">U</button>
-            <button onclick="formatText('strikeThrough')">S</button>
-            <button onclick="formatText('insertOrderedList')">1.</button>
-            <button onclick="formatText('insertUnorderedList')">•</button>
-            <button onclick="addLink()">Link</button>
-            <button onclick="addImage()">Image</button>
+            <button onclick="formatText('bold')"><b>B</b></button>
+            <button onclick="formatText('italic')"><i>I</i></button>
+            <button onclick="formatText('underline')"><u>U</u></button>
+            <select onchange="changeFontSize(this.value)">
+                <option value="">Text Size</option>
+                <option value="18px">Базовый</option>
+                <option value="25px">Средний</option>
+                <option value="35px">Большой</option>
+            </select>
+            <button onclick="document.execCommand('createLink', false, prompt('Введите URL', 'http://'))">🔗</button>
+            <input type="file" id="uploadImage" style="display: none;" onchange="uploadImageToServer()">
+            <button onclick="document.getElementById('uploadImage').click()">📷</button>
         </div>
     </div>
     <div class="all">
@@ -27,19 +31,84 @@
             <p>Нажмите здесь и начните вводить текст...</p>
         </div>
     </div>
-    <script src="https://teledevtech.github.io/flip/static/st.js"></script>
+    <script src="flip/static/st.js"></script>
     <script>
-        document.addEventListener('selectionchange', function () {const selection = window.getSelection();if (selection.rangeCount > 0 && !selection.isCollapsed) {const range = selection.getRangeAt(0);const selectedText = range.toString().trim(); if (selectedText.length > 0) {toggleToolbar(true);} else {toggleToolbar(false);}} else {toggleToolbar(false);}});
-        document.querySelector('.editor').addEventListener('focus', function() {toggleToolbar(true););
-        document.querySelector('.editor').addEventListener('blur', function() {const selection = window.getSelection();if (selection.isCollapsed) {toggleToolbar(false);}});
-        document.querySelector('.editor').addEventListener('keypress', function(event) {if (event.key === 'Enter') {document.execCommand('formatBlock', false, 'p');});
-        document.querySelector('.editor').addEventListener('focus', function() {if (this.innerHTML.trim() === '') {this.innerHTML = '<p><br></p>';}});
-    </script>
-    <script>
-        function formatText(command) {document.execCommand(command, false, null);}
-        function addLink() {const url = prompt("Введите URL:");if (url) {document.execCommand('createLink', false, url);}}
-        function addImage() {const url = prompt("Введите URL изображения:");if (url) {document.execCommand('insertImage', false, url);}}
-        function toggleToolbar(show) {const toolbar = document.getElementById('toolbar');toolbar.style.visibility = show ? 'visible' : 'hidden';}
+        function formatText(command) {
+            document.execCommand(command, false, null);
+        }
+
+        function addLink() {
+            const url = prompt("Введите URL:");
+            if (url) {
+                document.execCommand('createLink', false, url);
+            }
+        }
+
+        function addImage() {
+            const url = prompt("Введите URL изображения:");
+            if (url) {
+                document.execCommand('insertImage', false, url);
+            }
+        }
+
+        function changeFontSize(size) {
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const commonAncestor = range.commonAncestorContainer;
+                if (commonAncestor.nodeType === 3) {
+                    const parentNode = commonAncestor.parentNode;
+                    parentNode.style.fontSize = size;
+                } else {
+                    commonAncestor.style.fontSize = size;
+                }
+            }
+        }
+
+        function toggleToolbar(show) {
+            const toolbar = document.getElementById('toolbar');
+            toolbar.style.visibility = show ? 'visible' : 'hidden';
+        }
+
+        document.addEventListener('selectionchange', function () {
+            const selection = window.getSelection();
+
+            if (selection.rangeCount > 0 && !selection.isCollapsed) {
+                const range = selection.getRangeAt(0);
+                const selectedText = range.toString().trim();
+
+                if (selectedText.length > 0) {
+                    toggleToolbar(true);
+                } else {
+                    toggleToolbar(false);
+                }
+            } else {
+                toggleToolbar(false);
+            }
+        });
+
+        document.querySelector('.editor').addEventListener('focus', function() {
+            toggleToolbar(true);
+        });
+
+        document.querySelector('.editor').addEventListener('blur', function() {
+            const selection = window.getSelection();
+            if (selection.isCollapsed) {
+                toggleToolbar(false);
+            }
+        });
+
+        document.querySelector('.editor').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                document.execCommand('formatBlock', false, 'p');
+            }
+        });
+
+        document.querySelector('.editor').addEventListener('focus', function() {
+            if (this.innerHTML.trim() === '') {
+                this.innerHTML = '<p><br></p>';
+            }
+        });
     </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
