@@ -11,20 +11,18 @@
         <p class="main">♻️FLIP♻️</p><br>
     </main>
     <div>
-        <div class="toolbar" id="toolbar">
-            <button onclick="formatText('bold')"><b>B</b></button>
-            <button onclick="formatText('italic')"><i>I</i></button>
-            <button onclick="formatText('underline')"><u>U</u></button>
-            <select onchange="changeFontSize(this.value)">
-                <option value="">Text Size</option>
-                <option value="18px">Базовый</option>
-                <option value="25px">Средний</option>
-                <option value="35px">Большой</option>
-            </select>
-            <button onclick="document.execCommand('createLink', false, prompt('Введите URL', 'http://'))">🔗</button>
-            <input type="file" id="uploadImage" style="display: none;" onchange="uploadImageToServer()">
-            <button onclick="document.getElementById('uploadImage').click()">📷</button>
-        </div>
+        <button onclick="formatText('bold')"><b>B</b></button>
+        <button onclick="formatText('italic')"><i>I</i></button>
+        <button onclick="formatText('underline')"><u>U</u></button>
+        <select onchange="changeFontSize(this.value)">
+            <option value="">Text Size</option>
+            <option value="18px">Базовый</option>
+            <option value="25px">Средний</option>
+            <option value="35px">Большой</option>
+        </select>
+        <button onclick="document.execCommand('createLink', false, prompt('Введите URL', 'http://'))">🔗</button>
+        <input type="file" id="uploadImage" style="display: none;" onchange="uploadImageToServer()">
+        <button onclick="document.getElementById('uploadImage').click()">📷</button>
     </div>
     <div class="all">
         <div id="start" class="editor" contenteditable="true">
@@ -77,13 +75,14 @@
                 const range = selection.getRangeAt(0);
                 const selectedText = range.toString().trim();
 
+                // Если есть выделенный текст, показываем панель инструментов
                 if (selectedText.length > 0) {
                     toggleToolbar(true);
                 } else {
                     toggleToolbar(false);
                 }
             } else {
-                toggleToolbar(false);
+                toggleToolbar(false); // Скрываем панель, если ничего не выделено
             }
         });
 
