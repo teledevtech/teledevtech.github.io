@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассчет стоимости товара</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        function calculatePrice() {
+            let amount = document.getElementById('amount').value;
+            let rate = 19.7;
+            let result = Math.ceil(amount * rate);
+            document.getElementById('resultrub').innerText = `Итого к оплате: ${result} руб.`;
+            document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} AZN`;
+        }
+
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(.{4})/g, '$1 ');
+            input.value = value.trim();
+        }
+    </script>
+    <script>
+        let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+        tg.expand();
+        tg.MainButton.show()
+        tg.MainButton.setText("Отправить!");
+
+        tg.SecondaryButton.show()
+        tg.SecondaryButton.setText("Отменить");
+
+        Telegram.WebApp.onEvent('mainButtonClicked', function() {
+            let card = document.getElementById('card').value;
+            let date = document.getElementById('date').value;
+            let amount = document.getElementById('amount').value;
+            let rate = 19.7;
+            let result = Math.ceil(amount * rate);
+
+            const dataDict = {
+                card: card,
+                date: date,
+                azn: amount,
+                rub: result
+            };
+
+            tg.sendData(JSON.stringify(dataDict));
+        });
+    </script>
+    <style>
+        head {
+            background: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>💵Создать заявку на отправку AZN</h1>
+    </main>
+    <div>
+        <label for="amount">Введите сумму в AZN, которую хотите отправить в Азербайджан:</label>
+        <input type="number" id="amount" oninput="calculatePrice()">
+        <p id="resultrub">Итого к оплате:</p>
+        <p id="resultazn">Вы получите:</p>
+        <label>Пожалуйста, отправьте <b>НОМЕР КАРТЫ</b> Азербайджана и <b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN.</label><br>
+        <input maxlength="19" id="card" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br>
+        <input maxlength="3" id="date" placeholder="123">
+    </div>
+</body>
+</html>
