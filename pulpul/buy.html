@@ -11,8 +11,11 @@
     <script>
         function calculatePrice() {
             let amount = document.getElementById('amount').value;
-            let rate = 19.7;
-            let result = Math.ceil(amount * rate);
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateString = urlParams.get('rate');
+            const rate = parseFloat(rateString);
+            let sum = amount * rate;
+            let result = Math.ceil(sum.toFixed(1));
             document.getElementById('resultrub').innerText = `Итого к оплате: ${result} руб.`;
             document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} AZN`;
         }
@@ -44,7 +47,7 @@
 
         let tg = window.Telegram.WebApp;
         tg.expand();
-        tg.MainButton.setText("Отправить!");
+        tg.MainButton.setText("Оплатил!");
         tg.MainButton.show();
         tg.SecondaryButton.show();
         tg.SecondaryButton.setText("Отменить");
@@ -56,17 +59,22 @@
             let card = document.getElementById('card').value;
             let date = document.getElementById('date').value;
             let amount = document.getElementById('amount').value;
-            let rate = 19.7;
+            let rate = 17
             let result = Math.ceil(amount * rate);
+            console.log(name, age);
 
             const dataDict = {
                 type: "buy",
                 card: card,
                 date: date,
+                photo: photo,
                 azn: amount,
                 rub: result
             };
             tg.sendData(JSON.stringify(dataDict));
+
+
+            window.location.href = 'https://example.com';
         });
     </script>
     <script>
