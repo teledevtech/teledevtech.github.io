@@ -59,22 +59,14 @@
             let card = document.getElementById('card').value;
             let date = document.getElementById('date').value;
             let amount = document.getElementById('amount').value;
-            let rate = 17
-            let result = Math.ceil(amount * rate);
-            console.log(name, age);
 
-            const dataDict = {
-                type: "buy",
-                card: card,
-                date: date,
-                photo: photo,
-                azn: amount,
-                rub: result
-            };
-            tg.sendData(JSON.stringify(dataDict));
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateString = urlParams.get('rate');
+            const rate = parseFloat(rateString);
+            let sum = amount * rate;
+            let result = Math.ceil(sum.toFixed(1));
 
-
-            window.location.href = 'https://example.com';
+            window.location.href = `https://teledevtech.github.io/pulpul/pay.html?type=buy?card=${card}?date=${date}?azn=${azn}?ruble=${result}`;
         });
     </script>
     <script>
