@@ -33,7 +33,7 @@
                     return { source: fs.createReadStream(this.filePath) };
                 }
             }
-            const photo = new FSInputFile('./path/to/your/photo.jpg');
+            const photo = new FSInputFile(document.getElementById('check').value);
             const photoForTelegram = photo.getFile();
 
             const dataDict = {
@@ -69,6 +69,6 @@
 </head>
 <body>
     <label>Прикрепите фотография квитанции о переводе:</label><br>
-    <input type="file">
+    <input type="file" id="check">
 </body>
 </html>
