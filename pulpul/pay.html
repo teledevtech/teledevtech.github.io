@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PulPulbot</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.MainButton.setText("Готово!");
+        tg.MainButton.show();
 
+        Telegram.WebApp.onEvent('mainButtonClicked', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+            const card = urlParams.get('card');
+            const date = urlParams.get('date');
+            const azn = urlParams.get('azn');
+            const rub = urlParams.get('ruble');
+
+            const { Telegraf } = require('telegraf');
+            const fs = require('fs');
+
+            class FSInputFile {
+                constructor(filePath) {
+                    this.filePath = filePath;
+                }
+
+                getFile() {
+                    return { source: fs.createReadStream(this.filePath) };
+                }
+            }
+            const photo = new FSInputFile('./path/to/your/photo.jpg');
+            const photoForTelegram = photo.getFile();
+
+            const dataDict = {
+                type: "buy",
+                card: card,
+                date: date,
+                azn: amount,
+                rub: result,
+                photo: photo
+            };
+            tg.sendData(JSON.stringify(dataDict));
+        });
+    </script>
+        <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        main {
+            font-size: 12px;
+        }
+
+        input {
+            background: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+            border: 1px solid var(--tg-theme-text-color);
+        }
+    </style>
+</head>
+<body>
+    <label>Прикрепите фотография квитанции о переводе:</label><br>
+    <input type="file">
+</body>
+</html>
