@@ -104,7 +104,9 @@
         <h1>💵Создать заявку на отправку AZN</h1>
     </main>
     <div>
-        <label for="amount">Введите сумму в AZN, которую хотите отправить в Азербайджан:</label>
+        <label for="amount">Введите сумму в <b>AZN</b>, которую хотите отправить в Азербайджан:</label>
+        <input type="text" inputmode="numeric" pattern="[0-9]*" />
+        <input type="tel" pattern="[0-9]*" />
         <input type="number" id="amount" oninput="calculatePrice()">
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
