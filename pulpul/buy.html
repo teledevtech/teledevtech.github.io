@@ -89,20 +89,17 @@
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #ffce0a;
+            background-image: url('https://teledevtech.github.io/pulpul/photo.jpg'); /* Исправлено: добавлена закрывающая кавычка */
             color: black;
             margin: 0;
             padding: 20px;
             font-size: 15px;
         }
-
         main {
             text-align: center;
             font-size: 15px;
         }
-
         input {
-            background: #ffce0a;
             color: black;
             border: 0px;
             font-size: 16px;
@@ -112,19 +109,21 @@
         }
     </style>
 </head>
-<body style="overflow: hidden; background:#ffce0a;">
-    <main>
-        <h1>💵Отправить AZN💵</h1>
-    </main>
-    <div>
-        <label>Введите сумму в <b>AZN</b>:</label><br>
-        <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br><br>
-        <span id="resultrub">Итого к оплате:</span><br>
-        <span id="resultazn">Вы получите:</span><br><br>
-        <label><b>НОМЕР КАРТЫ</b> Азербайджана</label><br>
-        <input style="font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
-        <label><b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN</label><br>
-        <input style="font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+<body style="overflow: hidden;">
+    <div class="fon">
+        <main>
+            <h1>💵Отправить AZN💵</h1>
+        </main><br>
+        <div>
+            <label>Введите сумму в <b>AZN</b>:</label><br><br>
+            <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br><br><br>
+            <span id="resultrub">Итого к оплате:</span><br>
+            <span id="resultazn">Вы получите:</span><br><br><br>
+            <label><b>НОМЕР КАРТЫ</b> Азербайджана</label><br>
+            <input style="font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
+            <label><b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN</label><br>
+            <input style="font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+        </div>
     </div>
 </body>
 </html>
