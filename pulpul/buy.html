@@ -95,24 +95,27 @@
             padding: 20px;
         }
 
-        main {}
+        main {
+            text-align: center;
+        }
 
         input {
             background: var(--tg-theme-bg-color);
             color: var(--tg-theme-text-color);
-            border: 1px solid var(--tg-theme-text-color);
-            border: 1px solid grey;
-            border-radius: 8px;
+            border: 0px;
+        }
+        input:focus {
+            outline: none;
         }
     </style>
 </head>
 <body style="overflow: hidden;">
     <main>
-        <h1>💵Отправить AZN</h1>
+        <h1>💵Отправить AZN💵</h1>
     </main>
     <div>
-        <label for="amount">Введите сумму в <b>AZN</b>:</label><br>
-        <input id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"/>
+        <label>Введите сумму в <b>AZN</b>:</label><br>
+        <input style="border-bottom: 1px solid gray; width:400px;" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()">
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
         <label><b>НОМЕР КАРТЫ</b> Азербайджана</label><br>
