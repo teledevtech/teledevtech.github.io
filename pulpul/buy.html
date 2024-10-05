@@ -93,18 +93,14 @@
             color: var(--tg-theme-text-color);
             margin: 0;
             padding: 20px;
-            font-size: 12px;
         }
 
-        main {
-            font-size: 10px;
-        }
+        main {}
 
         input {
             background: var(--tg-theme-bg-color);
             color: var(--tg-theme-text-color);
             border: 1px solid var(--tg-theme-text-color);
-            font-size: 12px;
             border: 1px solid grey;
             border-radius: 8px;
         }
@@ -112,15 +108,16 @@
 </head>
 <body style="overflow: hidden;">
     <main>
-        <h1>💵Создать заявку на отправку AZN</h1>
+        <h1>💵Отправить AZN</h1>
     </main>
     <div>
-        <label for="amount">Введите сумму в <b>AZN</b>, которую хотите отправить в Азербайджан:</label><br>
+        <label for="amount">Введите сумму в <b>AZN</b>:</label><br>
         <input type="number" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"/>
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
-        <label>Пожалуйста, отправьте <b>НОМЕР КАРТЫ</b> Азербайджана и <b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN.</label><br>
-        <input maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br>
+        <label><b>НОМЕР КАРТЫ</b> Азербайджана</label><br>
+        <input maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
+        <label><b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN</label><br>
         <input maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
     </div>
 </body>
