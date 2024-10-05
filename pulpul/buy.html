@@ -93,16 +93,20 @@
             color: var(--tg-theme-text-color);
             margin: 0;
             padding: 20px;
+            font-size: 10px;
         }
 
         main {
-            font-size: 12px;
+            font-size: 8px;
         }
 
         input {
             background: var(--tg-theme-bg-color);
             color: var(--tg-theme-text-color);
             border: 1px solid var(--tg-theme-text-color);
+            font-size: 10px;
+            border: 1px solid grey;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -111,7 +115,7 @@
         <h1>💵Создать заявку на отправку AZN</h1>
     </main>
     <div>
-        <label for="amount">Введите сумму в <b>AZN</b>, которую хотите отправить в Азербайджан:</label>
+        <label for="amount">Введите сумму в <b>AZN</b>, которую хотите отправить в Азербайджан:</label><br>
         <input type="number" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"/>
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
