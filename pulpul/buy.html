@@ -105,9 +105,7 @@
     </main>
     <div>
         <label for="amount">Введите сумму в <b>AZN</b>, которую хотите отправить в Азербайджан:</label>
-        <input type="text" inputmode="numeric" pattern="[0-9]*" />
-        <input type="tel" pattern="[0-9]*" />
-        <input type="number" id="amount" oninput="calculatePrice()">
+        <input type="number" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"/>
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
         <label>Пожалуйста, отправьте <b>НОМЕР КАРТЫ</b> Азербайджана и <b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN.</label><br>
