@@ -115,13 +115,13 @@
     </main>
     <div>
         <label>Введите сумму в <b>AZN</b>:</label><br>
-        <input style="border-bottom: 1px solid gray; width: 100%;" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()">
+        <input style="font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()">
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
         <label><b>НОМЕР КАРТЫ</b> Азербайджана</label><br>
-        <input maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
+        <input style="font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
         <label><b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN</label><br>
-        <input maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+        <input style="font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
     </div>
 </body>
 </html>
