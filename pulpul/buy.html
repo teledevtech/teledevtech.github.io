@@ -15,7 +15,7 @@
             const rateString = urlParams.get('rate');
             const rate = parseFloat(rateString);
             let sum = amount * rate;
-            let result = Math.ceil(sum.toFixed(1));
+            let result = sum.toFixed(1);
             document.getElementById('resultrub').innerText = `Итого к оплате: ${result} руб.`;
             document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} AZN`;
         }
@@ -64,7 +64,7 @@
             const rateString = urlParams.get('rate');
             const rate = parseFloat(rateString);
             let sum = amount * rate;
-            let result = Math.ceil(sum.toFixed(1));
+            let result = sum.toFixed(1);
 
             window.location.href = `https://teledevtech.github.io/pulpul/pay.html?type=buy?card=${card}?date=${date}?azn=${azn}?ruble=${result}`;
         });
@@ -109,8 +109,8 @@
         <p id="resultrub">Итого к оплате:</p>
         <p id="resultazn">Вы получите:</p>
         <label>Пожалуйста, отправьте <b>НОМЕР КАРТЫ</b> Азербайджана и <b>СРОК ДЕЙСТВИЯ НА КАРТЕ</b> для получения AZN.</label><br>
-        <input maxlength="19" id="card" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br>
-        <input maxlength="5" id="date" placeholder="MM/YY" oninput="formatDate(this)">
+        <input maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br>
+        <input maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)">
     </div>
 </body>
 </html>
