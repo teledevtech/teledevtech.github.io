@@ -14,7 +14,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate');
             const rate = parseFloat(rateString);
-            let sum = amount * rate;
+            let sum = amount / rate * 1000;
             let result = sum.toFixed(1);
             document.getElementById('resultrub').innerText = `Итого к оплате: ${result} руб.`;
             document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} AZN`;
@@ -115,7 +115,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 35px;
+            padding: 25px;
         }
     </style>
 </head>
