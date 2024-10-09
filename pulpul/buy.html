@@ -11,13 +11,21 @@
     <script>
         function calculatePrice() {
             let amount = document.getElementById('amount').value;
-            const urlParams = new URLSearchParams(window.location.search);
-            const rateString = urlParams.get('rate');
-            const rate = parseFloat(rateString);
-            let sum = amount / rate * 1000;
-            let result = sum.toFixed(1);
-            document.getElementById('resultrub').innerText = `Итого к оплате: ${result} руб.`;
-            document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} AZN`;
+                        if (amount < 100) {
+                document.getElementById('warn').style.display = 'block';
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                tg.MainButton.show();
+                tg.SecondaryButton.show();
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateString = urlParams.get('rate');
+                const rate = parseFloat(rateString);
+                let sum = amount / rate * 1000;
+                let result = sum.toFixed(1);
+                document.getElementById('resultrub').innerText = `Итого к оплате: ${result} AZN.`;
+                document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} руб.`;
+            }
+
         }
 
         function formatCardNumber(input) {
@@ -48,8 +56,6 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
         tg.MainButton.setText("Оплатить");
-        tg.MainButton.show();
-        tg.SecondaryButton.show();
         tg.SecondaryButton.setText("Отменить");
         tg.SecondaryButton.onClick(() => {
             tg.close();
@@ -126,7 +132,9 @@
         </main><br>
         <div>
             <label>Введите сумму в <b>AZN</b>:</label><br><br>
-            <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br><br><br>
+            <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
+            <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 100 AZN</span>
+            <br><br>
             <span id="resultrub">Итого к оплате:</span><br>
             <span id="resultazn">Вы получите:</span><br><br><br>
             <label><b>НОМЕР КАРТЫ</b> Азербайджана</label><br>
