@@ -78,7 +78,7 @@
                 type: "buy",
                 card: card,
                 date: date,
-                azn: amount,
+                azn: document.getElementById('amount').value,
                 rub: result
             };
             tg.sendData(JSON.stringify(dataDict));
