@@ -100,9 +100,10 @@
         }
 
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
-            let card = document.getElementById('card').value;
-            let date = document.getElementById('date').value;
-            let amount = document.getElementById('amount').value;
+            let field1 = document.getElementById('amount').value;
+            let field2 = document.getElementById('phoneInput').value;
+            let field3 = document.getElementById('fullname').value;
+            let field4 = document.getElementById('bankget').value;
 
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate');
@@ -112,8 +113,9 @@
 
             const dataDict = {
                 type: "sell",
-                card: card,
-                date: date,
+                phone: field2,
+                fullname: field3,
+                bankget: field4,
                 azn: amount,
                 rub: result
             };
