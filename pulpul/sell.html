@@ -43,19 +43,19 @@
                 document.getElementById('resultrub').innerHTML = `<b>Вы получите:</b> ${amount} руб.`;
 
                 let field1 = document.getElementById('amount').value;
-                let field2 = document.getElementById('telephone').value;
+                let field2 = document.getElementById('phoneInput').value;
                 let field3 = document.getElementById('fullname').value;
                 let field4 = document.getElementById('bankget').value;
 
                 if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                    pass
+                    // Ничего не делаем, так как одно из полей пустое
                 } else {
                     tg.MainButton.show();
                 }
             }
         }
         function formatPhoneNumber() {
-            const input = document.getElementById('phoneInput').value.replace(/\D/g, '');
+            let input = document.getElementById('phoneInput').value.replace(/\D/g, '');
             let formatted = '';
             if (input.length > 0) {
                 formatted += '+7';
@@ -72,16 +72,17 @@
             if (input.length >= 9) {
                 formatted += '-' + input.substring(9, 11);
             }
-            document.getElementById('formattedPhone').innerText = formatted;
+            console.log(formatted);
+            document.getElementById('phoneInput').value = formatted;
             if (input.length >= 16) {
                 document.getElementById('fullname').focus();
             }
             let field1 = document.getElementById('amount').value;
-            let field2 = document.getElementById('telephone').value;
+            let field2 = document.getElementById('phoneInput').value;
             let field3 = document.getElementById('fullname').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                pass
+                // Ничего не делаем, так как одно из полей пустое
             } else {
                 tg.MainButton.show();
             }
@@ -89,11 +90,11 @@
 
         function formatLAST(input) {
             let field1 = document.getElementById('amount').value;
-            let field2 = document.getElementById('telephone').value;
+            let field2 = document.getElementById('phoneInput').value;
             let field3 = document.getElementById('fullname').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                pass
+                // Ничего не делаем, так как одно из полей пустое
             } else {
                 tg.MainButton.show();
             }
@@ -119,15 +120,6 @@
             };
             tg.sendData(JSON.stringify(dataDict));
         });
-
-        function moveToNextInput(currentInputId, nextInputId) {
-            const currentInput = document.getElementById(currentInputId);
-            const nextInput = document.getElementById(nextInputId);
-
-            if (currentInput.value) {
-                nextInput.focus();
-            }
-        }
     </script>
     <style>
         body {
@@ -176,9 +168,9 @@
             <span id="resultrub"></span><br>
             <span id="rate"></span><br><br><br>
             <label><b>Введите номер мобильного телефона привязанного к банку</b></label><br>
-            <input style="font-family: 'Open Sans', sans-serif;" maxlength="16" id="telephone" inputmode="numeric" pattern="[0-9]*" placeholder="+7(903)123-45-67" oninput="formatCardNumber(this)"><br><br>
+            <input style="font-family: 'Open Sans', sans-serif;" maxlength="16" id="phoneInput" inputmode="numeric" pattern="[0-9]*" placeholder="+7(903)123-45-67" oninput="formatPhoneNumber()"><br><br>
             <label><b>Укажите ФИО получателя</b></label><br>
-            <input style="font-family: 'Open Sans', sans-serif;" id="fullname" oninput="formatNext(this)"><br><br>
+            <input style="font-family: 'Open Sans', sans-serif;" id="fullname"><br><br>
             <label><b>Укажите банк получателя</b></label><br>
             <input style="font-family: 'Open Sans', sans-serif;" id="bankget" oninput="formatLAST(this)"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
