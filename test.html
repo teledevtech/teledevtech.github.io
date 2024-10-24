@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Закрепленный фон</title>
+    <style>
+        body {
+            margin: 0;
+            height: 200vh; /* Делаем страницу длинной для демонстрации прокрутки */
+            background-image: url('teledevtech.github.io/photo.jpg'); /* Замените на свой фон */
+            background-attachment: fixed; /* Закрепляем фон */
+            background-size: cover; /* Заполняем весь экран */
+        }
+
+        .content {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для контента */
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Форма ввода</h1>
+        <form>
+            <label for="input1">Поле ввода 1:</label>
+            <input type="text" id="input1" name="input1"><br><br>
+            <label for="input2">Поле ввода 2:</label>
+            <input type="text" id="input2" name="input2"><br><br>
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+</body>
+</html>
