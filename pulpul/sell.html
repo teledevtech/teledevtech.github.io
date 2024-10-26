@@ -27,14 +27,15 @@
 
         function calculatePrice() {
             let amount = document.getElementById('amount').value;
-            if (amount < 100) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateString = urlParams.get('rate');
+            const rate = parseFloat(rateString);
+            if (amount < 100 and typeof amount/rate*1000 !== 'number') {
+                tg.MainButton.hide();
+                tg.SecondaryButton.hide();
                 document.getElementById('warn').style.display = 'block';
-            } else {
+            }else{
                 document.getElementById('warn').style.display = 'none';
-
-                const urlParams = new URLSearchParams(window.location.search);
-                const rateString = urlParams.get('rate');
-                const rate = parseFloat(rateString);
 
                 let sum = amount / rate * 1000;
                 let result = sum.toFixed(1);
