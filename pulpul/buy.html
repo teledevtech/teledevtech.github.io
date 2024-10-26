@@ -31,8 +31,8 @@
                 document.getElementById('warn').style.display = 'none';
                 let sum = amount / rate * 1000;
                 let result = sum.toFixed(1);
-                document.getElementById('resultrub').innerText = `Итого к оплате: ${amount} RUB.`;
-                document.getElementById('resultazn').innerText = `Вы получите: ${result} AZN.`;
+                document.getElementById('resultrub').innerText = `Итого к оплате: ${result} RUB.`;
+                document.getElementById('resultazn').innerText = `Вы получите: ${amount} AZN.`;
 
                 let field1 = document.getElementById('date').value;
                 let field2 = document.getElementById('card').value;
