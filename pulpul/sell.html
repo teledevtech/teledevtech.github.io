@@ -73,9 +73,6 @@
                 formatted += '-' + input.substring(9, 11);
             }
             document.getElementById('phoneInput').value = formatted;
-            if (input.length >= 16) {
-                document.getElementById('fullname').focus();
-            }
             let field1 = document.getElementById('amount').value;
             let field2 = document.getElementById('phoneInput').value;
             let field3 = document.getElementById('fullname').value;
@@ -84,6 +81,11 @@
                 // Ничего не делаем, так как одно из полей пустое
             } else {
                 tg.MainButton.show();
+            }
+            if (input.length === 16) {
+                document.getElementById('fullname').focus();
+            } else {
+                // Ничего не делаем
             }
         }
 
