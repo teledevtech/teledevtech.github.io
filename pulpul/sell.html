@@ -41,8 +41,8 @@
                 let sum = amount / rate * 1000;
                 let result = sum.toFixed(1);
 
-                document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${result} AZN`;
-                document.getElementById('resultrub').innerHTML = `<b>Вы получите:</b> ${amount} руб.`;
+                document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
+                document.getElementById('resultrub').innerHTML = `<b>Вы получите:</b> ${result} руб.`;
 
                 let field1 = document.getElementById('amount').value;
                 let field2 = document.getElementById('phoneInput').value;
