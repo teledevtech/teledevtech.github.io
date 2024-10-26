@@ -30,7 +30,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate');
             const rate = parseFloat(rateString);
-            if (amount < 100 and typeof amount/rate*1000 !== 'number') {
+            if (amount < 100 || typeof amount/rate*1000 !== 'number') {
                 tg.MainButton.hide();
                 tg.SecondaryButton.hide();
                 document.getElementById('warn').style.display = 'block';
