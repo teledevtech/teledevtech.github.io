@@ -24,8 +24,15 @@
                 let result = sum.toFixed(1);
                 document.getElementById('resultrub').innerText = `Итого к оплате: ${result} AZN.`;
                 document.getElementById('resultazn').innerText = `Итого к оплате: ${amount} RUB.`;
+                
+                let field1 = document.getElementById('date').value;
+                let field2 = document.getElementById('card').value;
+                if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
+                    // Ничего не делаем, так как одно из полей пустое
+                } else {
+                    tg.MainButton.show();
+                }
             }
-
         }
 
         function formatCardNumber(input) {
@@ -33,6 +40,13 @@
             value = value.replace(/(.{4})/g, '$1 ');
             input.value = value.trim();
             if (value.replace(/\s/g, '').length === 16) {
+                let field1 = document.getElementById('date').value;
+                let field2 = document.getElementById('card').value;
+                if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
+                    // Ничего не делаем, так как одно из полей пустое
+                } else {
+                    tg.MainButton.show();
+                }
                 document.getElementById('date').focus();
             }
 
@@ -49,6 +63,13 @@
             input.value = value;
 
             if (value.replace(/\//g, '').length === 4) {
+                let field1 = document.getElementById('date').value;
+                let field2 = document.getElementById('card').value;
+                if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
+                    // Ничего не делаем, так как одно из полей пустое
+                } else {
+                    tg.MainButton.show();
+                }
                 input.blur();
             }
         }
