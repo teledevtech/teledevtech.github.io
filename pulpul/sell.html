@@ -39,7 +39,7 @@
                 document.getElementById('warn').style.display = 'none';
 
                 let sum = amount / rate * 1000;
-                let result = sum.toFixed(1);
+                let result = Math.round(number / 100) * 100;
 
                 document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
                 document.getElementById('resultrub').innerHTML = `<b>Вы получите:</b> ${result} руб.`;
