@@ -94,8 +94,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate');
             const rate = parseFloat(rateString);
-            let sum = amount * rate;
-            let result = sum.toFixed(1);
+            let sum = amount / rate * 1000;
+            let result = Math.round(sum / 100) * 100;
 
             const dataDict = {
                 type: "buy",
