@@ -39,8 +39,10 @@
                 document.getElementById('warn').style.display = 'none';
                 let sum = amount / rate * 1000;
                 let result = Math.round(sum / 100) * 100;
-                document.getElementById('resultrub').innerText = `<b>Итого к оплате:</b> ${result} RUB.`;
-                document.getElementById('resultazn').innerText = `<b>Вы получите:</b> ${amount} AZN.`;
+
+
+                document.getElementById('resultrub').value = `<b>Итого к оплате:</b> ${result} RUB.`;
+                document.getElementById('resultazn').value = `<b>Вы получите:</b> ${amount} AZN.`;
 
                 let field1 = document.getElementById('date').value;
                 let field2 = document.getElementById('card').value;
