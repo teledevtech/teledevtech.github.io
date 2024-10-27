@@ -30,7 +30,7 @@
             }else{
                 document.getElementById('warn').style.display = 'none';
                 let sum = amount / rate * 1000;
-                let result = sum.toFixed(1);
+                let result = Math.round(number / 100) * 100;
                 document.getElementById('resultrub').innerText = `Итого к оплате: ${result} RUB.`;
                 document.getElementById('resultazn').innerText = `Вы получите: ${amount} AZN.`;
 
