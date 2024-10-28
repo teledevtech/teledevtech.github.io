@@ -41,8 +41,8 @@
                 let result = Math.round(sum / 100) * 100;
 
 
-                document.getElementById('resultrub').value = `<b>Итого к оплате:</b> ${result} RUB.`;
-                document.getElementById('resultazn').value = `<b>Вы получите:</b> ${amount} AZN.`;
+                document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${result} RUB.`;
+                document.getElementById('resultazn').innerHTML = `<b>Вы получите:</b> ${amount} AZN.`;
 
                 let field1 = document.getElementById('date').value;
                 let field2 = document.getElementById('card').value;
