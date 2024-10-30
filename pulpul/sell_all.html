@@ -19,7 +19,7 @@
             document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
 
             const link = document.getElementById("selllink");
-            link.href = `https://teledevtech.github.io/pulpul/buy.html?rate_buy=${rate_buy}?rate_sell=${rate_sell}`;
+            link.href = `https://teledevtech.github.io/pulpul/buy_all.html?rate_buy=${rate_buy}?rate_sell=${rate_sell}`;
             console.log(link.href);
 
             tg.expand();
@@ -186,7 +186,7 @@
     <div class="container">
         <main>
             <h1>Конвертировать AZN в RUB</h1>
-        </main><br><br>
+        </main><br>
         <div class="fw">
             <a id='selllink' href="https://t.me/PulPulbot">Отправить AZN</a>
         </div>
