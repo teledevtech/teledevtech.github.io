@@ -13,9 +13,14 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const rateString = urlParams.get('rate');
-            const rate = parseFloat(rateString);
+            const rate_buy = urlParams.get('rate_buy');
+            const rate_sell = urlParams.get('rate_sell');
+            const rate = parseFloat(rate_sell);
             document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
+
+            const link = document.getElementById("selllink");
+            link.href = `https://teledevtech.github.io/pulpul/buy.html?rate_buy=${rate_buy}?rate_sell=${rate_sell}`;
+            console.log(link.href);
 
             tg.expand();
             tg.MainButton.setText("Оплатить");
@@ -28,7 +33,7 @@
         function calculatePrice() {
             let amount = document.getElementById('amount').value;
             const urlParams = new URLSearchParams(window.location.search);
-            const rateString = urlParams.get('rate');
+            const rateString = urlParams.get('rate_sell');
             const rate = parseFloat(rateString);
             document.body.style.height = `900px`;
             if (amount < 100) {
@@ -111,7 +116,7 @@
             let field4 = document.getElementById('bankget').value;
 
             const urlParams = new URLSearchParams(window.location.search);
-            const rateString = urlParams.get('rate');
+            const rateString = urlParams.get('rate_sell');
             const rate = parseFloat(rateString);
             let sum = amount / rate * 1000;
             let result = Math.round(sum / 100) * 100;
@@ -163,7 +168,7 @@
         }
         #bankget {
             width: 100%;
-        }        
+        }
     </style>
 </head>
 <body>
@@ -171,6 +176,9 @@
         <main>
             <h1>Конвертировать AZN в RUB</h1>
         </main><br>
+        <div>
+            <a href="https://t.me/PulPulbot">Отправить AZN</a>
+        </div>
         <div>
             <label>Введите сумму в <b>AZN</b>:</label><br><br>
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
