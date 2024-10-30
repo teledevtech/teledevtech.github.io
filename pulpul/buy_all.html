@@ -163,6 +163,17 @@
             margin: 0 auto;
             padding: 25px;
         }
+        #selllink {
+            text-decoration: none;
+            color: inherit;
+        }
+        .fw {
+            text-align: center;
+            width: 100%;
+            border: 1px solid black;
+            border-radius: 12px;
+            padding: 8px 0px 8px 0px;
+        }
     </style>
 </head>
 <body>
@@ -170,9 +181,10 @@
         <main>
             <h1>Отправить AZN</h1>
         </main><br>
-        <div>
+        <div class="fw">
             <a id='selllink' href="https://t.me/PulPulbot">Конвертировать AZN в RUB</a>
         </div>
+        <br><br>
         <div>
             <label>Введите сумму в <b>AZN</b>:</label><br><br>
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
