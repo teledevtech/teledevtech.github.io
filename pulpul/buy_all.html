@@ -31,7 +31,7 @@
         });
 
         function calculatePrice() {
-            let amount = document.getElementById('amount').value;
+            let amount_last = document.getElementById('amount').value;
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate_buy');
             const rate = parseFloat(rateString);
@@ -42,7 +42,7 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
-                let amount = Math.round(amount / 100) * 100
+                let amount = Math.round(amount_last / 100) * 100
                 let sum = amount / 1000 * rate;
                 let result = Math.round(sum / 100) * 100;
 
