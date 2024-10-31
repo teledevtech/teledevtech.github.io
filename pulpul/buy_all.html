@@ -42,9 +42,9 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount / 100) * 100
                 let sum = amount / 1000 * rate;
                 let result = Math.round(sum / 100) * 100;
-                let amount = Math.round(amount / 100) * 100
 
 
                 document.getElementById('amount').value = amount;
