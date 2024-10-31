@@ -36,18 +36,20 @@
             const rateString = urlParams.get('rate_buy');
             const rate = parseFloat(rateString);
             document.body.style.height = `1000px`;
-            if (amount < 100) {
+            if (amount < 2000) {
                 tg.MainButton.hide();
                 tg.SecondaryButton.hide();
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
-                let sum = amount / rate * 1000;
+                let sum = (amount * rate) / 1000;
                 let result = Math.round(sum / 100) * 100;
+                let amount = Math.round(amount / 100) * 100
 
 
-                document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${result} RUB.`;
-                document.getElementById('resultazn').innerHTML = `<b>Вы получите:</b> ${amount} AZN.`;
+                document.getElementById('amount').value = amount;
+                document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${amount} RUB.`;
+                document.getElementById('resultazn').innerHTML = `<b>Вы получите:</b> ${result} AZN.`;
 
                 let field1 = document.getElementById('date').value;
                 let field2 = document.getElementById('card').value;
@@ -109,7 +111,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate_buy');
             const rate = parseFloat(rateString);
-            let sum = amount / rate * 1000;
+            let sum = (amount * rate) / 1000;
             let result = Math.round(sum / 100) * 100;
 
             const dataDict = {
