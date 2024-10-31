@@ -44,7 +44,7 @@
                 document.getElementById('warn').style.display = 'none';
                 let amount = Math.round(amount_last / 100) * 100
                 let sum = amount / 1000 * rate;
-                let result = Math.round(sum / 10) * 10;
+                let result = Math.round(sum);
 
 
                 document.getElementById('amount').value = amount;
@@ -112,7 +112,7 @@
             const rateString = urlParams.get('rate_buy');
             const rate = parseFloat(rateString);
             let sum = amount / 1000 * rate;
-            let result = Math.round(sum / 10) * 10;
+            let result = Math.round(sum);
 
             const dataDict = {
                 type: "buy",
