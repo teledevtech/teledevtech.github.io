@@ -42,7 +42,7 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
-                let sum = (amount * rate) / 1000;
+                let sum = amount / 1000 * rate;
                 let result = Math.round(sum / 100) * 100;
                 let amount = Math.round(amount / 100) * 100
 
@@ -111,7 +111,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate_buy');
             const rate = parseFloat(rateString);
-            let sum = (amount * rate) / 1000;
+            let sum = amount / 1000 * rate;
             let result = Math.round(sum / 100) * 100;
 
             const dataDict = {
@@ -189,7 +189,7 @@
         <div>
             <label>Введите сумму в <b>AZN</b>:</label><br><br>
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
-            <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 100 AZN</span>
+            <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 2000 RUB</span>
             <br><br>
             <span id="resultrub"><b>Итого к оплате:</b></span><br>
             <span id="resultazn"><b>Вы получите:</b></span><br>
