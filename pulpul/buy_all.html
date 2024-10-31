@@ -36,7 +36,7 @@
             const rateString = urlParams.get('rate_buy');
             const rate = parseFloat(rateString);
             document.body.style.height = `1000px`;
-            if (amount < 2000) {
+            if (amount_last < 2000) {
                 tg.MainButton.hide();
                 tg.SecondaryButton.hide();
                 document.getElementById('warn').style.display = 'block';
