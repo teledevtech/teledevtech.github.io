@@ -118,8 +118,8 @@
                 type: "buy",
                 card: card,
                 date: date,
-                azn: amount,
-                rub: result
+                azn: result,
+                rub: amount
             };
             tg.sendData(JSON.stringify(dataDict));
         });
