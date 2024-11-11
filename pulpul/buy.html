@@ -13,7 +13,8 @@
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const rate_buy = urlParams.get('rate_buy');
-            const rate_sell = urlParams.get('rate_sell');
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+
             const rate = parseFloat(rate_buy);
             document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
         });
@@ -197,10 +198,10 @@
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
 
             <button onclick="sendwithpremium">
-                Отправить и подключить абонемент за 399 ₽ в месяц
+                Отправить и подключить абонемент за 399 ₽ в месяц >
             </button>
             <button onclick="sendwithoutpremium">
-                Отправить без абонемента
+                Отправить без абонемента >
             </button>
         </div>
     </div>
