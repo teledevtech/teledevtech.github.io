@@ -80,14 +80,13 @@
                 // Ничего не делаем
             }
         }
+
         function sendwithoutpremium() {
-            let field1 = document.getElementById('date').value;
-            let field2 = document.getElementById('card').value;
-            let field3 = document.getElementById('amount').value;
-            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
-                let card = document.getElementById('card').value;
-                let date = document.getElementById('date').value;
-                let amount = document.getElementById('amount').value;
+            let field1 = document.getElementById('amount').value;
+            let field2 = document.getElementById('fullname').value;
+            let field3 = document.getElementById('phoneInput').value;
+            let field4 = document.getElementById('bankget').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);
@@ -109,10 +108,11 @@
             }
         }
         function sendwithpremium() {
-            let field1 = document.getElementById('date').value;
-            let field2 = document.getElementById('card').value;
-            let field3 = document.getElementById('amount').value;
-            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+            let field1 = document.getElementById('amount').value;
+            let field2 = document.getElementById('fullname').value;
+            let field3 = document.getElementById('phoneInput').value;
+            let field4 = document.getElementById('bankget').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
                 let card = document.getElementById('card').value;
                 let date = document.getElementById('date').value;
                 const urlParams = new URLSearchParams(window.location.search);
