@@ -35,10 +35,10 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
-                let amount = Math.round(amount_last / 100) * 100;
-                let sumWithoutPrem = amount / rateWithoutPremium * 1000;
+                let amount = Math.round(amount_last / 100) * 100
+                let sumWithoutPrem = amount * rateWithoutPremium * 1000;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
-                let sumPrem = amount / rateWithPremium * 1000;
+                let sumPrem = amount * rateWithPremium * 1000;
                 let resultPrem = Math.round(sumPrem);
 
 
@@ -85,7 +85,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);
-                let sum = amount / rate * 1000;
+                let sum = amount * rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
@@ -113,7 +113,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
-                let sum = amount / rate * 1000;
+                let sum = amount * rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
