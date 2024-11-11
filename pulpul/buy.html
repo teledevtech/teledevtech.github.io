@@ -142,7 +142,7 @@
             let field3 = document.getElementById('amount').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
                 alert('Заполните все поля!');
-            else:
+            } else {
                 let card = document.getElementById('card').value;
                 let date = document.getElementById('date').value;
                 let amount = document.getElementById('amount').value;
@@ -168,6 +168,8 @@
             let field2 = document.getElementById('card').value;
             let field3 = document.getElementById('amount').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                alert('Заполните все поля!');
+            } else {
                 let card = document.getElementById('card').value;
                 let date = document.getElementById('date').value;
                 let amount = document.getElementById('amount').value;
@@ -186,8 +188,6 @@
                     rub: amount
                 };
                 tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
             }
         }
     </script>
