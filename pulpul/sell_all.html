@@ -41,10 +41,10 @@
                 document.getElementById('warn').style.display = 'none';
                 let amount = Math.round(amount_last / 100) * 100
 
-                let sumWithoutPrem = amount / rateWithoutPremium * 1000;
+                let sumWithoutPrem = amount * rateWithoutPremium;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
 
-                let sumPrem = amount / rateWithPremium * 1000;
+                let sumPrem = amount * rateWithPremium;
                 let resultPrem = Math.round(sumPrem);
 
 
@@ -90,7 +90,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);
-                let sum = amount / rate * 1000;
+                let sum = field1 * rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
@@ -113,12 +113,10 @@
             let field3 = document.getElementById('phoneInput').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                let card = document.getElementById('card').value;
-                let date = document.getElementById('date').value;
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
-                let sum = field3 / rate * 1000;
+                let sum = field3 * rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
