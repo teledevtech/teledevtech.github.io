@@ -44,7 +44,8 @@
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
                 let sumPrem = amount / 1000 * rateWithPremium;
                 let resultPrem = Math.round(sumPrem);
-
+                console.log(amount);
+                console.log(resultPrem);
 
                 document.getElementById('amount').value = amount;
                 document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${amount} RUB.`;
