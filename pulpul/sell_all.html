@@ -29,6 +29,7 @@
 
         function calculatePrice() {
             let amount_last = document.getElementById('amount').value;
+            console.log(amount_last);
             const urlParams = new URLSearchParams(window.location.search);
             const rateStringWithPremium = urlParams.get('rate_buy_premium');
             const rateStringWithoutPremium = urlParams.get('rate_buy');
@@ -39,7 +40,7 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
-                let amount = Math.round(amount_last / 100) * 100;
+                let amount = Math.round(amount_last / 100) * 100
                 let sumWithoutPrem = amount / rateWithoutPremium * 1000;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
                 let sumPrem = amount / rateWithPremium * 1000;
@@ -47,8 +48,8 @@
 
 
                 document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
-                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${result} руб.`;
-                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${result} руб.`;
+                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${sumWithoutPrem} руб.`;
+                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${resultPrem} руб.`;
             }
         }
 
