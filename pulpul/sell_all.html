@@ -45,14 +45,12 @@
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
 
                 let sumPrem = amount / rateWithPremium * 1000;
-                console.log(sumPrem);
                 let resultPrem = Math.round(sumPrem);
-                console.log(resultPrem);
 
 
                 document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
-                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${sumWithoutPrem} руб.`;
-                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${resultPrem} руб.`;
+                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${resultPrem} руб.`;
+                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${resultWithoutPrem} руб.`;
             }
         }
 
