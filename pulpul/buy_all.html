@@ -147,6 +147,8 @@
             let field2 = document.getElementById('card').value;
             let field3 = document.getElementById('amount').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                alert('Заполните все поля!');
+            } else {
                 let card = document.getElementById('card').value;
                 let date = document.getElementById('date').value;
                 let amount = document.getElementById('amount').value;
@@ -165,8 +167,6 @@
                     rub: amount
                 };
                 tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
             }
         }
         function sendwithpremium() {
@@ -174,10 +174,15 @@
             let field2 = document.getElementById('card').value;
             let field3 = document.getElementById('amount').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                alert('Заполните все поля!');
+            } else {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
-                let sum = field3 / rate;
+                let sum = amount / rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
@@ -189,8 +194,6 @@
                     rub: amount
                 };
                 tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
             }
         }
     </script>
