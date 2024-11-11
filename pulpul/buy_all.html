@@ -40,9 +40,9 @@
             }else{
                 document.getElementById('warn').style.display = 'none';
                 let amount = Math.round(amount_last / 100) * 100
-                let sumWithoutPrem = amount * rateWithoutPremium;
+                let sumWithoutPrem = amount / rateWithoutPremium;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
-                let sumPrem = amount * rateWithPremium;
+                let sumPrem = amount / rateWithPremium;
                 let resultPrem = Math.round(sumPrem);
 
 
@@ -140,7 +140,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);
-                let sum = amount * rate;
+                let sum = amount / rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
@@ -164,7 +164,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
-                let sum = field3 * rate;
+                let sum = field3 / rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
