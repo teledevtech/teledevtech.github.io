@@ -81,12 +81,14 @@
             }
         }
 
-        function sendwithoutpremium() {
+function sendwithoutpremium() {
             let field1 = document.getElementById('amount').value;
             let field2 = document.getElementById('fullname').value;
             let field3 = document.getElementById('phoneInput').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
+                alert('Заполните все поля!');
+            } else {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);
@@ -103,8 +105,6 @@
                     premium: "NO"
                 };
                 tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
             }
         }
         function sendwithpremium() {
@@ -113,6 +113,8 @@
             let field3 = document.getElementById('phoneInput').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
+                alert('Заполните все поля!');
+            } else {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
@@ -129,11 +131,8 @@
                     premium: "YES"
                 };
                 tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
             }
         }
-
     </script>
     <style>
         body {
