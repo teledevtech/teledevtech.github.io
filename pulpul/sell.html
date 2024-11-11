@@ -43,8 +43,8 @@
 
 
                 document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
-                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${result} руб.`;
-                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${result} руб.`;
+                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${resultPrem} руб.`;
+                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${resultWithoutPrem} руб.`;
             }
         }
 
@@ -74,7 +74,7 @@
                 // Ничего не делаем
             }
         }
-function sendwithoutpremium() {
+        function sendwithoutpremium() {
             let field1 = document.getElementById('amount').value;
             let field2 = document.getElementById('fullname').value;
             let field3 = document.getElementById('phoneInput').value;
