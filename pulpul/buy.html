@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PulPulbot</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rate_buy = urlParams.get('rate_buy');
+            const rate_sell = urlParams.get('rate_sell');
+            const rate = parseFloat(rate_buy);
+            document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
+        });
+
+        function calculatePrice() {
+            let amount_last = document.getElementById('amount').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+            const rateStringWithoutPremium = urlParams.get('rate_buy');
+            const rateWithPremium = parseFloat(rateStringWithPremium);
+            const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
+            document.body.style.height = `1000px`;
+            if (amount_last < 2000) {
+                document.getElementById('warn').style.display = 'block';
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount_last / 100) * 100
+                let sumWithoutPrem = amount / 1000 * rateWithoutPremium;
+                let resultWithoutPrem = Math.round(sumWithoutPrem);
+                let sumPrem = amount / 1000 * rateWithPremium;
+                let resultPrem = Math.round(sumPrem);
+
+
+                document.getElementById('amount').value = amount;
+                document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${amount} RUB.`;
+                document.getElementById('resultaznwithpre').innerHTML = `<b>Вы получите (с подпиской):</b> ${resultPrem} AZN.`;
+                document.getElementById('resultaznwithoutprem').innerHTML = `<b>Вы получите (без подписки):</b> ${resultWithoutPrem} AZN.`;
+            }
+        }
+
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(.{4})/g, '$1 ');
+            input.value = value.trim();
+            if (value.replace(/\s/g, '').length === 16) {
+                document.getElementById('date').focus();
+            }
+
+        }
+
+        function formatDate(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(.{2})/g, '$1/');
+
+            if (value.endsWith('/')) {
+                value = value.slice(0, -1);
+            }
+
+            input.value = value;
+
+            if (value.replace(/\//g, '').length === 4) {
+                input.blur();
+            }
+        }
+    </script>
+    <script>
+        function moveToNextInput(currentInputId, nextInputId) {
+            const currentInput = document.getElementById(currentInputId);
+            const nextInput = document.getElementById(nextInputId);
+
+            if (currentInput.value) {
+                nextInput.focus();
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('https://teledevtech.github.io/photo.jpg');
+            color: black;
+            background-position: center;
+            background-size: 700px;
+            color: black;
+            margin: 0;
+            padding: 20px;
+            font-size: 15px;
+        }
+        main {
+            text-align: center;
+            font-size: 15px;
+        }
+        input {
+            color: black;
+            border: 0px;
+            font-size: 16px;
+            background-color: transparent;
+        }
+        input:focus {
+            outline: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+        #selllink {
+            text-decoration: none;
+            color: inherit;
+            background: #ff4a4a;
+        }
+        .fw {
+            text-align: right;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function sendwithoutpremium() {
+            let field1 = document.getElementById('date').value;
+            let field2 = document.getElementById('card').value;
+            let field3 = document.getElementById('amount').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateString = urlParams.get('rate_buy');
+                const rate = parseFloat(rateString);
+                let sum = amount / 1000 * rate;
+                let result = Math.round(sum);
+
+                const dataDict = {
+                    type: "buy",
+                    premium: "NO",
+                    card: card,
+                    date: date,
+                    azn: result,
+                    rub: amount
+                };
+                tg.sendData(JSON.stringify(dataDict));
+            } else {
+                alert('Заполните все поля!');
+            }
+        }
+        function sendwithpremium() {
+            let field1 = document.getElementById('date').value;
+            let field2 = document.getElementById('card').value;
+            let field3 = document.getElementById('amount').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateStringWithPremium = urlParams.get('rate_buy_premium');
+                const rate = parseFloat(rateStringWithPremium);
+                let sum = amount / 1000 * rate;
+                let result = Math.round(sum);
+
+                const dataDict = {
+                    type: "buy",
+                    premium: "YES",
+                    card: card,
+                    date: date,
+                    azn: result,
+                    rub: amount
+                };
+                tg.sendData(JSON.stringify(dataDict));
+            } else {
+                alert('Заполните все поля!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <main>
+            <h1>Купить AZN</h1>
+        </main><br>
+        <div>
+            <label>Введите сумму в <b>RUB</b>:</label><br><br>
+            <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
+            <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 2000 RUB</span>
+            <br><br>
+            <span id="resultrubm"><b>Итого к оплате:</b></span><br>
+            <span id="resultaznwithpre"><b>Вы получите (с подпиской):</b></span><br>
+            <span id="resultaznwithoutprem"><b>Вы получите (без подписки):</b></span><br>
+            <span id="rate"></span><br><br><br>
+            <label><b>Введите номер карты:</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
+            <label><b>Введите срок действия карты:</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+            <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
+
+            <button onclick="sendwithpremium">
+                Отправить и подключить абонемент за 399 ₽ в месяц
+            </button>
+            <button onclick="sendwithoutpremium">
+                Отправить без абонемента
+            </button>
+        </div>
+    </div>
+</body>
+</html>
