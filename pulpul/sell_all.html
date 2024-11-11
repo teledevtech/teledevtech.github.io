@@ -20,11 +20,11 @@
             const rateStringWithPremium = urlParams.get('rate_buy_premium');
             const rate_sell_StringWithPremium = urlParams.get('rate_sell_premium');
 
-            const rate = parseFloat(rate_buy);
+            const rate = parseFloat(rate_sell);
             document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
 
             const link = document.getElementById("selllink");
-            link.href = `https://teledevtech.github.io/pulpul/sell_all.html?rate_buy=${rate_buy}&rate_sell=${rate_sell}&rate_buy_premium=${rate_buy}&rate_sell_premium=${rate_sell}`;
+            link.href = `https://teledevtech.github.io/pulpul/sell_all.html?rate_buy=${rate_buy}&rate_sell=${rate_sell}&rate_buy_premium=${rateStringWithPremium}&rate_sell_premium=${rate_sell_StringWithPremium}`;
         });
 
         function calculatePrice() {
@@ -35,58 +35,106 @@
             const rateWithPremium = parseFloat(rateStringWithPremium);
             const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
             document.body.style.height = `1000px`;
-            if (amount_last < 2000) {
+            if (amount_last < 100) {
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
                 let amount = Math.round(amount_last / 100) * 100
-                let sumWithoutPrem = amount / 1000 * rateWithoutPremium;
+                let sumWithoutPrem = amount / rateWithoutPremium * 1000;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
-                let sumPrem = amount / 1000 * rateWithPremium;
+                let sumPrem = amount / rateWithPremium * 1000;
                 let resultPrem = Math.round(sumPrem);
 
 
-                document.getElementById('amount').value = amount;
-                document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${amount} RUB.`;
-                document.getElementById('resultaznwithpre').innerHTML = `<b>Вы получите (с подпиской):</b> ${resultPrem} AZN.`;
-                document.getElementById('resultaznwithoutprem').innerHTML = `<b>Вы получите (без подписки):</b> ${resultWithoutPrem} AZN.`;
+                document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
+                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${result} руб.`;
+                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${result} руб.`;
             }
         }
 
-        function formatCardNumber(input) {
-            let value = input.value.replace(/\D/g, '');
-            value = value.replace(/(.{4})/g, '$1 ');
-            input.value = value.trim();
-            if (value.replace(/\s/g, '').length === 16) {
-                document.getElementById('date').focus();
+        function formatPhoneNumber() {
+            let input = document.getElementById('phoneInput').value.replace(/\D/g, '');
+            let formatted = '';
+            if (input.length > 0) {
+                formatted += '+7';
             }
-
-        }
-
-        function formatDate(input) {
-            let value = input.value.replace(/\D/g, '');
-            value = value.replace(/(.{2})/g, '$1/');
-
-            if (value.endsWith('/')) {
-                value = value.slice(0, -1);
+            if (input.length > 1) {
+                formatted += ' (' + input.substring(1, 4);
             }
-
-            input.value = value;
-
-            if (value.replace(/\//g, '').length === 4) {
-                input.blur();
+            if (input.length > 4) {
+                formatted += ') ' + input.substring(4, 7);
             }
-        }
-    </script>
-    <script>
-        function moveToNextInput(currentInputId, nextInputId) {
-            const currentInput = document.getElementById(currentInputId);
-            const nextInput = document.getElementById(nextInputId);
+            if (input.length > 7) {
+                formatted += '-' + input.substring(7, 9);
+            }
+            if (input.length > 9) {
+                formatted += '-' + input.substring(9, 11);
+            }
+            document.getElementById('phoneInput').value = formatted;
 
-            if (currentInput.value) {
-                nextInput.focus();
+            if (input.length === 11) {
+                document.getElementById('fullname').focus();
+            } else {
+                // Ничего не делаем
             }
         }
+        function sendwithoutpremium() {
+            let field1 = document.getElementById('date').value;
+            let field2 = document.getElementById('card').value;
+            let field3 = document.getElementById('amount').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateString = urlParams.get('rate_buy');
+                const rate = parseFloat(rateString);
+                let sum = amount / rate * 1000;
+                let result = Math.round(sum);
+
+                const dataDict = {
+                    type: "sell",
+                    phone: field2,
+                    fullname: field3,
+                    bankget: field4,
+                    azn: result,
+                    rub: amount
+                    premium: "NO",
+                };
+                tg.sendData(JSON.stringify(dataDict));
+            } else {
+                alert('Заполните все поля!');
+            }
+        }
+        function sendwithpremium() {
+            let field1 = document.getElementById('date').value;
+            let field2 = document.getElementById('card').value;
+            let field3 = document.getElementById('amount').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateStringWithPremium = urlParams.get('rate_buy_premium');
+                const rate = parseFloat(rateStringWithPremium);
+                let sum = amount / rate * 1000;
+                let result = Math.round(sum);
+
+                const dataDict = {
+                    type: "sell",
+                    phone: field2,
+                    fullname: field3,
+                    bankget: field4,
+                    azn: result,
+                    rub: amount
+                    premium: "YES",
+                };
+                tg.sendData(JSON.stringify(dataDict));
+            } else {
+                alert('Заполните все поля!');
+            }
+        }
+
     </script>
     <style>
         body {
@@ -99,6 +147,7 @@
             margin: 0;
             padding: 20px;
             font-size: 15px;
+            height: 700px;
         }
         main {
             text-align: center;
@@ -118,102 +167,54 @@
             margin: 0 auto;
             padding: 25px;
         }
+        #fullname {
+            width: 100%;
+        }
+        #bankget {
+            width: 100%;
+        }
         #selllink {
             text-decoration: none;
             color: inherit;
-            background: #ff4a4a;
+            background: #66ff61;
         }
         .fw {
             text-align: right;
             width: 100%;
         }
     </style>
-    <script>
-        function sendwithoutpremium() {
-            let field1 = document.getElementById('date').value;
-            let field2 = document.getElementById('card').value;
-            let field3 = document.getElementById('amount').value;
-            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
-                let card = document.getElementById('card').value;
-                let date = document.getElementById('date').value;
-                let amount = document.getElementById('amount').value;
-                const urlParams = new URLSearchParams(window.location.search);
-                const rateString = urlParams.get('rate_buy');
-                const rate = parseFloat(rateString);
-                let sum = amount / 1000 * rate;
-                let result = Math.round(sum);
-
-                const dataDict = {
-                    type: "buy",
-                    premium: "NO",
-                    card: card,
-                    date: date,
-                    azn: result,
-                    rub: amount
-                };
-                tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
-            }
-        }
-        function sendwithpremium() {
-            let field1 = document.getElementById('date').value;
-            let field2 = document.getElementById('card').value;
-            let field3 = document.getElementById('amount').value;
-            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
-                let card = document.getElementById('card').value;
-                let date = document.getElementById('date').value;
-                let amount = document.getElementById('amount').value;
-                const urlParams = new URLSearchParams(window.location.search);
-                const rateStringWithPremium = urlParams.get('rate_buy_premium');
-                const rate = parseFloat(rateStringWithPremium);
-                let sum = amount / 1000 * rate;
-                let result = Math.round(sum);
-
-                const dataDict = {
-                    type: "buy",
-                    premium: "YES",
-                    card: card,
-                    date: date,
-                    azn: result,
-                    rub: amount
-                };
-                tg.sendData(JSON.stringify(dataDict));
-            } else {
-                alert('Заполните все поля!');
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="container">
         <div class="fw">
-            <a id='selllink' href="https://t.me/PulPulbot">Переход на «Продать AZN» ➡️ </a>
+            <a id='selllink' href="https://t.me/PulPulbot">Переход на «Купить AZN» ➡️ </a>
         </div>
         <main>
-            <h1>Купить AZN</h1>
+            <h1>Продать AZN</h1>
         </main><br>
         <div>
-            <label>Введите сумму в <b>RUB</b>:</label><br><br>
+            <label>Введите сумму в <b>AZN</b>:</label><br><br>
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
-            <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 2000 RUB</span>
+            <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 100 AZN</span>
             <br><br>
-            <span id="resultrubm"><b>Итого к оплате:</b></span><br>
-            <span id="resultaznwithpre"><b>Вы получите (с подпиской):</b></span><br>
-            <span id="resultaznwithoutprem"><b>Вы получите (без подписки):</b></span><br>
+            <span id="resultazn"><b>Оплатите AZN:</b></span><br>
+            <span id="resultrub"><b>Вы получите (без подписки):</b></span><br>
+            <span id="resultrub_prem"><b>Вы получите (с подпиской):</b></span><br>
             <span id="rate"></span><br><br><br>
-            <label><b>Введите номер карты:</b></label><br>
-            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
-            <label><b>Введите срок действия карты:</b></label><br>
-            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+            <label><b>Введите номер мобильного телефона привязанного к банку</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="18" id="phoneInput" inputmode="numeric" pattern="[0-9]*" placeholder="+7 (903) 123-45-67" oninput="formatPhoneNumber()"><br><br>
+            <label><b>Укажите ФИО получателя</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" id="fullname"><br><br>
+            <label><b>Укажите банк получателя</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" id="bankget"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
-
             <button onclick="sendwithpremium()">
-                Отправить и подключить абонемент за 399 ₽ в месяц >
+                Отправить и подключить абонемент за 399 ₽ в месяц
             </button>
             <button onclick="sendwithoutpremium()">
-                Отправить без абонемента >
+                Отправить без абонемента
             </button>
+
         </div>
     </div>
 </body>
