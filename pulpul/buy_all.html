@@ -44,8 +44,7 @@
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
                 let sumPrem = amount / 1000 * rateWithPremium;
                 let resultPrem = Math.round(sumPrem);
-                console.log(amount);
-                console.log(resultPrem);
+
 
                 document.getElementById('amount').value = amount;
                 document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${amount} RUB.`;
@@ -199,7 +198,7 @@
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
             <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 2000 RUB</span>
             <br><br>
-            <span id="resultrubm"><b>Итого к оплате:</b></span><br>
+            <span id="resultrub"><b>Итого к оплате:</b></span><br>
             <span id="resultaznwithpre"><b>Вы получите (с подпиской):</b></span><br>
             <span id="resultaznwithoutprem"><b>Вы получите (без подписки):</b></span><br>
             <span id="rate"></span><br><br><br>
