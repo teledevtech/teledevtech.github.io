@@ -13,10 +13,12 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const rate_buy = urlParams.get('rate_buy');
             const rate_sell = urlParams.get('rate_sell');
+            const rate_sell_StringWithPremium = urlParams.get('rate_sell_premium');
+
             const rate = parseFloat(rate_sell);
             document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
+
         });
 
         function calculatePrice() {
