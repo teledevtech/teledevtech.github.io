@@ -33,7 +33,7 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
-                let amount = Math.round(amount_last / 100) * 100
+                let amount = Math.round(amount_last / 100) * 100;
                 let sumWithoutPrem = amount / rateWithoutPremium;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
                 let sumPrem = amount / rateWithPremium;
