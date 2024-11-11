@@ -44,7 +44,7 @@
             }else{
                 document.getElementById('warn').style.display = 'none';
 
-                let sum = amount / rate * 1000;
+                let sum = amount * rate;
                 let result = Math.round(sum / 100) * 100;
 
                 document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
@@ -119,7 +119,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate_sell');
             const rate = parseFloat(rateString);
-            let sum = amount / rate * 1000;
+            let sum = amount * rate;
             let result = Math.round(sum / 100) * 100;
 
             const dataDict = {
