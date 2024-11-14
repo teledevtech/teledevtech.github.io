@@ -100,7 +100,7 @@ function sendwithoutpremium() {
                     phone: field2,
                     fullname: field3,
                     bankget: field4,
-                    azn: result,
+                    azn: field1,
                     rub: amount,
                     premium: "NO"
                 };
@@ -118,7 +118,7 @@ function sendwithoutpremium() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
-                let sum = field3 * rate;
+                let sum = field1 * rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
@@ -127,7 +127,7 @@ function sendwithoutpremium() {
                     fullname: field3,
                     bankget: field4,
                     azn: result,
-                    rub: field3,
+                    rub: field1,
                     premium: "YES"
                 };
                 tg.sendData(JSON.stringify(dataDict));
@@ -220,7 +220,7 @@ function sendwithoutpremium() {
             <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" id="bankget"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
             <button class="btn" onclick="sendwithpremium()">
-                Отправить и подключить абонемент за 399 ₽ в месяц
+                Отправить и подключить абонемент за 300 ₽ в месяц
             </button>
             <button class="btn" onclick="sendwithoutpremium()">
                 Отправить без абонемента
