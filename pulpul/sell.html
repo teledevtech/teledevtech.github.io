@@ -22,7 +22,6 @@
             document.getElementById('mainrate').innerHTML = `${rate} руб.`;
             document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} руб.`;
             document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rate_sell_StringWithPremium} руб.`;
-[
         });
 
         function calculatePrice() {
@@ -282,7 +281,7 @@
                         <div class="button-container">
                 <div class="button" onclick="sendwithpremium()">
                     <div class="text">
-                        <div class="savings">Экономия: <b id="savings">309,9</b> ₽</div>
+                        <div class="savings">Экономия: <b id="savings">0</b> ₽</div>
                         <div class="main-text">Отправить и подключить Абонемент за 300 ₽ в месяц</div>
                         <div class="rate">Курс: 1 AZN = <del id="mainrate"> руб.</del> <b style="color:green;" id="premiumrate"> руб.</b></div>
                         <div class="total">Вы получите: <del id="totaldel">0 AZN</del> <b style="color:green;" id="totalwithprem">0 AZN</b></div>
@@ -297,7 +296,7 @@
                 <div class="button" onclick="sendwithoutpremium()">
                     <div class="text">
                         <div class="main-text">Отправить без Абонемента</div>
-                        <div class="rate" id="mainwithoutrate">Курс: 1 ₽ = 62,1853 ₽</div>
+                        <div class="rate" id="mainwithoutrate">Курс: 1 ₽ = ₽</div>
                         <div class="total" id="total">Вы получите: AZN</div>
                     </div>
                     <div class="icon">
