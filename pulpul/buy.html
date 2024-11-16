@@ -20,7 +20,7 @@
             const rate = parseFloat(rate_buy);
             document.getElementById('mainrate').innerHTML = `${rate} руб.`;
             document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} руб.`;
-            document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rateStringWithPremium} руб.`;
+            document.getElementById('premiumrate').innerHTML = `${rateStringWithPremium} руб.`;
         });
 
         function calculatePrice() {
@@ -213,6 +213,8 @@
             text-align: right;
             width: 100%;
         }
+    </style>
+    <style>
         .button-container {
             display: flex;
             flex-direction: column;
