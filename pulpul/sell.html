@@ -27,8 +27,8 @@
         function calculatePrice() {
             let amount_last = document.getElementById('amount').value;
             const urlParams = new URLSearchParams(window.location.search);
-            const rateStringWithPremium = urlParams.get('rate_buy_premium');
-            const rateStringWithoutPremium = urlParams.get('rate_buy');
+            const rateStringWithPremium = urlParams.get('rate_sell_premium');
+            const rateStringWithoutPremium = urlParams.get('rate_sell');
             const rateWithPremium = parseFloat(rateStringWithPremium);
             const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
             document.body.style.height = `1000px`;
@@ -37,9 +37,9 @@
             }else{
                 document.getElementById('warn').style.display = 'none';
                 let amount = Math.round(amount_last / 100) * 100;
-                let sumWithoutPrem = amount * rateWithoutPremium * 1000;
+                let sumWithoutPrem = amount * rateWithoutPremium;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
-                let sumPrem = amount * rateWithPremium * 1000;
+                let sumPrem = amount * rateWithPremium;
                 let resultPrem = Math.round(sumPrem);
 
 
@@ -266,10 +266,6 @@
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
             <span id="warn" style="display: none; text-align: center; color: red;">Минимальная сумма - 100 AZN</span>
             <br><br>
-            <span id="resultazn"><b>Оплатите AZN:</b></span><br>
-            <span id="resultrub"><b>Вы получите (без подписки):</b></span><br>
-            <span id="resultrub_prem"><b>Вы получите (с подпиской):</b></span><br>
-            <span id="rate"></span><br><br><br>
             <label><b>Введите номер мобильного телефона привязанного к банку</b></label><br>
             <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="18" id="phoneInput" inputmode="numeric" pattern="[0-9]*" placeholder="+7 (903) 123-45-67" oninput="formatPhoneNumber()"><br><br>
             <label><b>Укажите ФИО получателя</b></label><br>
@@ -297,7 +293,7 @@
                     <div class="text">
                         <div class="main-text">Отправить без Абонемента</div>
                         <div class="rate" id="mainwithoutrate">Курс: 1 ₽ = ₽</div>
-                        <div class="total" id="total">Вы получите: AZN</div>
+                        <div class="total" id="total">Вы получите: 0 AZN</div>
                     </div>
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="50px" height="50px">
