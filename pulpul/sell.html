@@ -18,7 +18,7 @@
             const rate_sell = urlParams.get('rate_sell');
             const rate_sell_StringWithPremium = urlParams.get('rate_sell_premium');
 
-            const rate = parseFloat(rate_buy);
+            const rate = parseFloat(rate_sell);
             document.getElementById('mainrate').innerHTML = `${rate} руб.`;
             document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} руб.`;
             document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rate_sell_StringWithPremium} руб.`;
