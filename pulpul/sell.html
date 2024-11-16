@@ -87,14 +87,9 @@
             } else {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
-                const rate = parseFloat(rateString);
-
-                console.log(rate);
-                
+                const rate = parseFloat(rateString);                
                 let sum = field1 * rate;
-                console.log(sum);
                 let result = Math.round(sum);
-                console.log(result);
 
                 const dataDict = {
                     type: "sell",
@@ -120,13 +115,8 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_sell_premium');
                 const rate = parseFloat(rateString);
-
-                console.log(rate);
-                
                 let sum = field1 * rate;
-                console.log(sum);
                 let result = Math.round(sum);
-                console.log(result);
 
                 const dataDict = {
                     type: "sell",
