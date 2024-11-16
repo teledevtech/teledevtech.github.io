@@ -93,8 +93,8 @@
 
                 const dataDict = {
                     type: "sell",
-                    phone: field2,
-                    fullname: field3,
+                    phone: field3,
+                    fullname: field2,
                     bankget: field4,
                     azn: result,
                     rub: amount,
@@ -114,16 +114,16 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateStringWithPremium = urlParams.get('rate_buy_premium');
                 const rate = parseFloat(rateStringWithPremium);
-                let sum = field3 * rate;
+                let sum = field1 * rate;
                 let result = Math.round(sum);
 
                 const dataDict = {
                     type: "sell",
-                    phone: field2,
-                    fullname: field3,
+                    phone: field3,
+                    fullname: field2,
                     bankget: field4,
-                    azn: result,
-                    rub: field3,
+                    azn: field1,
+                    rub: result,
                     premium: "YES"
                 };
                 tg.sendData(JSON.stringify(dataDict));
