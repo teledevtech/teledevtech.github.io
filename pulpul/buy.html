@@ -268,10 +268,7 @@
                 let resultPrem = Math.round(sumPrem);
 
                 document.getElementById('amount').value = amount;
-
                 document.getElementById('savings').innerHTML = (resultWithoutPrem-resultPrem) * rateWithoutPremium;
-
-                document.getElementById('resultrub').innerHTML = `${amount} RUB.`;
                 document.getElementById('total').innerHTML = `${resultPrem} AZN.`;
                 document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
                 document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
