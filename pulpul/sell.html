@@ -87,7 +87,7 @@
                 alert('Заполните все поля!');
             } else {
                 const urlParams = new URLSearchParams(window.location.search);
-                const rateString = urlParams.get('rate_buy');
+                const rateString = urlParams.get('rate_sell');
                 const rate = parseFloat(rateString);                
                 let sum = parseFloat(field1) * rate;
                 console.log(parseFloat(field1));
