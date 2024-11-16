@@ -88,8 +88,13 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);
+
+                console.log(rate);
+                
                 let sum = field1 * rate;
+                console.log(sum);
                 let result = Math.round(sum);
+                console.log(result);
 
                 const dataDict = {
                     type: "sell",
@@ -103,32 +108,7 @@
                 tg.sendData(JSON.stringify(dataDict));
             }
         }
-        function sendwithpremium() {
-            let field1 = document.getElementById('amount').value;
-            let field2 = document.getElementById('fullname').value;
-            let field3 = document.getElementById('phoneInput').value;
-            let field4 = document.getElementById('bankget').value;
-            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                alert('Заполните все поля!');
-            } else {
-                const urlParams = new URLSearchParams(window.location.search);
-                const rateStringWithPremium = urlParams.get('rate_buy_premium');
-                const rate = parseFloat(rateStringWithPremium);
-                let sum = field1 * rate;
-                let result = Math.round(sum);
-
-                const dataDict = {
-                    type: "sell",
-                    phone: field3,
-                    fullname: field2,
-                    bankget: field4,
-                    azn: field1,
-                    rub: result,
-                    premium: "YES"
-                };
-                tg.sendData(JSON.stringify(dataDict));
-            }
-        }
+        c
     </script>
     <style>
         body {
@@ -274,7 +254,7 @@
             <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" id="bankget"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
 
-                        <div class="button-container">
+            <div class="button-container">
                 <div class="button" onclick="sendwithpremium()">
                     <div class="text">
                         <div class="savings">Экономия: <b id="savings">0</b> ₽</div>
