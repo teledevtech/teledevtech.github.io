@@ -45,7 +45,7 @@
 
                 document.getElementById('amount').value = amount;
                 document.getElementById('savings').innerHTML = Math.round((resultWithoutPrem - resultPrem) * rateWithoutPremium);
-                document.getElementById('total').innerHTML = `${resultPrem} руб.`;
+                document.getElementById('total').innerHTML = `${resultWithoutPrem} руб.`;
                 document.getElementById('totalwithprem').innerHTML = `${resultPrem} руб.`;
                 document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} руб.`;
             }
