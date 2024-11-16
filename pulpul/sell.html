@@ -18,9 +18,11 @@
             const rate_sell = urlParams.get('rate_sell');
             const rate_sell_StringWithPremium = urlParams.get('rate_sell_premium');
 
-            const rate = parseFloat(rate_sell);
-            document.getElementById('rate').innerHTML = `<b>По курсу:</b> ${rate}`;
-
+            const rate = parseFloat(rate_buy);
+            document.getElementById('mainrate').innerHTML = `${rate} руб.`;
+            document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} руб.`;
+            document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rate_sell_StringWithPremium} руб.`;
+[
         });
 
         function calculatePrice() {
@@ -42,9 +44,11 @@
                 let resultPrem = Math.round(sumPrem);
 
 
-                document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
-                document.getElementById('resultrub_prem').innerHTML = `<b>Вы получите (с подпиской):</b> ${resultPrem} руб.`;
-                document.getElementById('resultrub').innerHTML = `<b>Вы получите (без подписки):</b> ${resultWithoutPrem} руб.`;
+                document.getElementById('amount').value = amount;
+                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `${resultPrem} руб.`;
+                document.getElementById('totalwithprem').innerHTML = `${resultPrem} руб.`;
+                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} руб.`;
             }
         }
 
@@ -173,18 +177,83 @@
             text-align: right;
             width: 100%;
         }
-        .btn {
-            font-family: 'Open Sans', sans-serif;
-            text-align: center;
-            width: 100%;
-            height: 50px;
-            text-decoration: none;
-            color: black;
-            border: 1px solid gray;
-            font-size: 16px;
+    </style>
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
             background-color: transparent;
-            margin: 0px 0px 3px 0px;
-            color: black;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .button .text {
+            flex: 1;
+        }
+
+        .button .text span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button .text .main-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .button .icon {
+            margin-left: 10px;
+            font-size: 24px;
+            color: #999;
+        }
+
+        .savings {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .rate {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .total {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .total span {
+            color: #28a745;
+        }
+        .icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #ff0000;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover .icon svg {
+            transform: scale(1.6);
+            fill: #ff0000;
         }
     </style>
 </head>
@@ -209,12 +278,35 @@
             <label><b>Укажите банк получателя</b></label><br>
             <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" id="bankget"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
-            <button class="btn" onclick="sendwithpremium()">
-                Отправить и подключить абонемент за 399 ₽ в месяц
-            </button>
-            <button class="btn" onclick="sendwithoutpremium()">
-                Отправить без абонемента
-            </button>
+
+                        <div class="button-container">
+                <div class="button" onclick="sendwithpremium()">
+                    <div class="text">
+                        <div class="savings">Экономия: <b id="savings">309,9</b> ₽</div>
+                        <div class="main-text">Отправить и подключить Абонемент за 300 ₽ в месяц</div>
+                        <div class="rate">Курс: 1 AZN = <del id="mainrate"> руб.</del> <b style="color:green;" id="premiumrate"> руб.</b></div>
+                        <div class="total">Вы получите: <del id="totaldel">0 AZN</del> <b style="color:green;" id="totalwithprem">0 AZN</b></div>
+                    </div>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="50px" height="50px">
+                            <path d="M10 6l6 6-6 6V6z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="button" onclick="sendwithoutpremium()">
+                    <div class="text">
+                        <div class="main-text">Отправить без Абонемента</div>
+                        <div class="rate" id="mainwithoutrate">Курс: 1 ₽ = 62,1853 ₽</div>
+                        <div class="total" id="total">Вы получите: AZN</div>
+                    </div>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="50px" height="50px">
+                            <path d="M10 6l6 6-6 6V6z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
