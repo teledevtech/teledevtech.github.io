@@ -36,12 +36,12 @@
                 document.getElementById('warn').style.display = 'block';
             }else{
                 document.getElementById('warn').style.display = 'none';
+
                 let amount = Math.round(amount_last / 100) * 100;
                 let sumWithoutPrem = amount * rateWithoutPremium;
                 let resultWithoutPrem = Math.round(sumWithoutPrem);
                 let sumPrem = amount * rateWithPremium;
                 let resultPrem = Math.round(sumPrem);
-
 
                 document.getElementById('amount').value = amount;
                 document.getElementById('savings').innerHTML = Math.round(resultPrem - resultWithoutPrem);
@@ -77,6 +77,7 @@
                 // Ничего не делаем
             }
         }
+
         function sendwithoutpremium() {
             let field1 = document.getElementById('amount').value;
             let field2 = document.getElementById('fullname').value;
@@ -88,7 +89,10 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_buy');
                 const rate = parseFloat(rateString);                
-                let sum = field1 * rate;
+                let sum = parseFloat(field1) * rate;
+                console.log(parseFloat(field1));
+                console.log(rate);
+                console.log(parseFloat(field1) * parseFloat(rate));
                 let result = Math.round(sum);
 
                 const dataDict = {
