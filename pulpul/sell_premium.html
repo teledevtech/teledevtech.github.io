@@ -86,7 +86,6 @@
             } else {
                 tg.MainButton.show();
             }
-            console.log(input.length);
             if (input.length === 11) {
                 document.getElementById('fullname').focus();
             } else {
@@ -129,6 +128,29 @@
             };
             tg.sendData(JSON.stringify(dataDict));
         });
+        function SendDataInfo() {
+            let amount = document.getElementById('amount').value;
+            let field2 = document.getElementById('phoneInput').value;
+            let field3 = document.getElementById('fullname').value;
+            let field4 = document.getElementById('bankget').value;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateString = urlParams.get('rate_sell');
+            const rate = parseFloat(rateString);
+            let sum = amount * rate;
+            let result = Math.round(sum / 100) * 100;
+
+            const dataDict = {
+                type: "sell",
+                phone: field2,
+                fullname: field3,
+                bankget: field4,
+                azn: amount,
+                rub: result,
+                premium: "NO"
+            };
+            tg.sendData(JSON.stringify(dataDict));
+        }
     </script>
     <style>
         body {
@@ -189,6 +211,7 @@
             <label><b>Укажите банк получателя</b></label><br>
             <input style="font-family: 'Open Sans', border-bottom: 1px solid gray; sans-serif;" id="bankget" oninput="formatLAST(this)"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
+            <button onclick="SendDataInfo()">Нажми</button>
         </div>
     </div>
 </body>
