@@ -122,28 +122,6 @@
             };
             tg.sendData(JSON.stringify(dataDict));
         });
-
-        function SENDER() {
-            let card = document.getElementById('card').value;
-            let date = document.getElementById('date').value;
-            let amount = document.getElementById('amount').value;
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const rateString = urlParams.get('rate_buy');
-            const rate = parseFloat(rateString);
-            let sum = amount / rate;
-            let result = Math.round(sum);
-
-            const dataDict = {
-                type: "buy",
-                card: card,
-                date: date,
-                azn: result,
-                rub: amount,
-                premium: "NO"
-            };
-            tg.sendData(JSON.stringify(dataDict));
-        }
 </script>
     <script>
         function moveToNextInput(currentInputId, nextInputId) {
@@ -205,7 +183,6 @@
             <label><b>Введите срок действия карты:</b></label><br>
             <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
             <p>Проверьте данные, если все поля верно заполнены нажмите на "Оплатить"</p>
-            <button onclick="SENDER()">Нажмите</button>
         </div>
     </div>
 </body>
