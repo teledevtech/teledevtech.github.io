@@ -13,6 +13,13 @@
         let tg = window.Telegram.WebApp;
         tg.expand()
 
+        function roundUpToNearest(value) {
+            let roundedTo50 = Math.ceil(value / 50) * 50;
+            let roundedTo100 = Math.ceil(value / 100) * 100;
+          
+            return Math.min(roundedTo50, roundedTo100);
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const rate_sell = urlParams.get('rate_sell');
@@ -39,9 +46,9 @@
 
                 let amount = Math.round(amount_last / 100) * 100;
                 let sumWithoutPrem = amount * rateWithoutPremium;
-                let resultWithoutPrem = Math.round(sumWithoutPrem);
+                let resultWithoutPrem = roundUpToNearest(sumWithoutPrem);
                 let sumPrem = amount * rateWithPremium;
-                let resultPrem = Math.round(sumPrem);
+                let resultPrem = roundUpToNearest(sumPrem);
 
                 document.getElementById('amount').value = amount;
                 document.getElementById('savings').innerHTML = Math.round(resultPrem - resultWithoutPrem);
@@ -90,10 +97,7 @@
                 const rateString = urlParams.get('rate_sell');
                 const rate = parseFloat(rateString);                
                 let sum = parseFloat(field1) * rate;
-                console.log(parseFloat(field1));
-                console.log(rate);
-                console.log(parseFloat(field1) * parseFloat(rate));
-                let result = Math.round(sum);
+                let result = roundUpToNearest(sum);
 
                 const dataDict = {
                     type: "sell",
@@ -120,7 +124,7 @@
                 const rateString = urlParams.get('rate_sell_premium');
                 const rate = parseFloat(rateString);
                 let sum = field1 * rate;
-                let result = Math.round(sum);
+                let result = roundUpToNearest(sum);
 
                 const dataDict = {
                     type: "sell",
