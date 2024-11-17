@@ -12,7 +12,14 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand()
-
+        
+        function roundUpToNearest(value) {
+            let roundedTo50 = Math.ceil(value / 50) * 50;
+            let roundedTo100 = Math.ceil(value / 100) * 100;
+          
+            return Math.min(roundedTo50, roundedTo100);
+        }
+        
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const rate_sell = urlParams.get('rate_sell');
@@ -41,7 +48,7 @@
                 document.getElementById('warn').style.display = 'none';
 
                 let sum = amount * rate;
-                let result = Math.round(sum / 100) * 100;
+                let result = roundUpToNearest(sum);
 
                 document.getElementById('resultazn').innerHTML = `<b>Оплатите AZN:</b> ${amount} AZN`;
                 document.getElementById('resultrub').innerHTML = `<b>Вы получите:</b> ${result} руб.`;
@@ -115,7 +122,7 @@
             const rateString = urlParams.get('rate_sell');
             const rate = parseFloat(rateString);
             let sum = amount * rate;
-            let result = Math.round(sum / 100) * 100;
+            let result = roundUpToNearest(sum);
 
             const dataDict = {
                 type: "sell",
@@ -138,7 +145,7 @@
             const rateString = urlParams.get('rate_sell');
             const rate = parseFloat(rateString);
             let sum = amount * rate;
-            let result = Math.round(sum / 100) * 100;
+            let result = roundUpToNearest(sum);
 
             const dataDict = {
                 type: "sell",
