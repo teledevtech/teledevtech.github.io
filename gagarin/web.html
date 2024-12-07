@@ -161,6 +161,22 @@
         </form>
     </div>
     <script>
+        
+        document.addEventListener('touchstart', hideKeyboard);
+        document.addEventListener('click', hideKeyboard);
+
+        function hideKeyboard(event) {
+            // Проверяем, был ли клик вне полей ввода
+            const activeElement = document.activeElement;
+            if (
+                activeElement.tagName === 'INPUT' ||
+                activeElement.tagName === 'TEXTAREA'
+            ) {
+                activeElement.blur(); // Убираем фокус с поля ввода
+            }
+        }
+
+
         const urgentRadio = document.getElementById("urgent");
         const scheduleRadio = document.getElementById("schedule");
         const datetimeContainer = document.getElementById("datetime-container");
@@ -248,8 +264,6 @@
         const form = document.getElementById('form');
 
         form.addEventListener('submit', (event) => {
-            event.preventDefault();
-
             const formData = {
                 type: form.querySelector('input[name="type"]:checked').value,
                 datetime: form.querySelector('#datetime')?.value || 'Срочно',
