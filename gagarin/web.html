@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Гагарин Такси</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand()
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -122,6 +126,43 @@
             background-color: #f4f4f9;
         }
     </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="form">
+            <div class="button-group">
+                <input type="radio" id="urgent" name="type" value="urgent" checked>
+                <label for="urgent">Срочно</label>
+
+                <input type="radio" id="schedule" name="type" value="schedule">
+                <label for="schedule">Запланировать</label>
+            </div>
+
+            <div id="datetime-container" style="display: none;">
+                <label for="datetime">Когда?</label>
+                <input type="datetime-local" id="datetime">
+            </div>
+
+            <label for="from">Откуда:</label>
+            <input type="text" id="from" required>
+            <ul id="suggestions1"></ul>
+
+            <label for="to">Куда:</label>
+            <input type="text" id="to" required>
+            <ul id="suggestions2"></ul>
+
+            <label for="amount">Стоимость:</label>
+            <input type="text" id="amount" required>
+
+            <label for="passengers">Количество пассажиров:</label>
+            <input type="text" id="passengers" required>
+
+            <label for="comment">Комментарий</label>
+            <input type="text" id="comment">
+
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
     <script>
         const urgentRadio = document.getElementById("urgent");
         const scheduleRadio = document.getElementById("schedule");
@@ -227,42 +268,5 @@
             tg.sendData(JSON.stringify(formData));
         });
     </script>
-</head>
-<body>
-    <div class="form-container">
-        <form id="form">
-            <div class="button-group">
-                <input type="radio" id="urgent" name="type" value="urgent" checked>
-                <label for="urgent">Срочно</label>
-
-                <input type="radio" id="schedule" name="type" value="schedule">
-                <label for="schedule">Запланировать</label>
-            </div>
-
-            <div id="datetime-container" style="display: none;">
-                <label for="datetime">Когда?</label>
-                <input type="datetime-local" id="datetime">
-            </div>
-
-            <label for="from">Откуда:</label>
-            <input type="text" id="from" required>
-            <ul id="suggestions1"></ul>
-
-            <label for="to">Куда:</label>
-            <input type="text" id="to" required>
-            <ul id="suggestions2"></ul>
-
-            <label for="amount">Стоимость:</label>
-            <input type="text" id="amount" required>
-
-            <label for="passengers">Количество пассажиров:</label>
-            <input type="text" id="passengers" required>
-
-            <label for="comment">Комментарий</label>
-            <input type="text" id="comment">
-
-            <input type="submit" value="Отправить">
-        </form>
-    </div>
 </body>
 </html>
