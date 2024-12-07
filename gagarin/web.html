@@ -4,17 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Гагарин Такси</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand()
-    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #ffffff;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,9 +16,12 @@
 
         .form-container {
             background-color: #ffffff;
-            padding: 30px;
             width: 100%;
             max-width: 400px;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .form-container label {
@@ -38,13 +34,14 @@
 
         .form-container input[type="text"],
         .form-container input[type="datetime-local"] {
-            width: 100%;
+            width: calc(100% - 10px); /* Ширина совпадает с двумя кнопками */
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #dddddd;
             border-radius: 5px;
             font-size: 0.9rem;
             color: #555555;
+            box-sizing: border-box;
         }
 
         .form-container input[type="text"]:focus,
@@ -89,8 +86,7 @@
             text-align: center;
             cursor: pointer;
             flex: 1;
-            margin: 0 5px;
-            text-align: center;
+            margin: 0 5px; /* Отступы между кнопками */
         }
 
         .button-group label:hover {
@@ -163,6 +159,7 @@
             <input type="submit" value="Отправить">
         </form>
     </div>
+
     <script>
         const urgentRadio = document.getElementById("urgent");
         const scheduleRadio = document.getElementById("schedule");
@@ -268,5 +265,6 @@
             tg.sendData(JSON.stringify(formData));
         });
     </script>
+
 </body>
 </html>
