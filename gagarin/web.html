@@ -123,9 +123,6 @@
         }
     </style>
     <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand()
-
         const urgentRadio = document.getElementById("urgent");
         const scheduleRadio = document.getElementById("schedule");
         const datetimeContainer = document.getElementById("datetime-container");
@@ -205,6 +202,8 @@
 
             amountInput.value = formattedValue;
         });
+    </script>
+    <script>
         const form = document.getElementById('form');
 
         form.addEventListener('submit', (event) => {
@@ -225,11 +224,9 @@
                 return;
             }
 
-            tg.sendData(JSON.stringify(dataDict));
-
+            tg.sendData(JSON.stringify(formData));
         });
     </script>
-
 </head>
 <body>
     <div class="form-container">
