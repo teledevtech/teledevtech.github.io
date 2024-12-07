@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гагарин Такси</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-container label {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #555555;
+        }
+
+        .form-container input[type="text"]:focus,
+        .form-container input[type="datetime-local"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .button-group input[type="radio"] {
+            display: none;
+        }
+
+        .button-group label {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        .button-group label:hover {
+            background-color: #0056b3;
+        }
+
+        .button-group input[type="radio"]:checked + label {
+            background-color: #0056b3;
+            font-weight: bold;
+        }
+
+        ul {
+            position: absolute;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            margin: 0;
+            padding: 5px 0;
+            list-style-type: none;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+        }
+
+        ul li {
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+
+        ul li:hover {
+            background-color: #f4f4f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="form">
+            <div class="button-group">
+                <input type="radio" id="urgent" name="type" value="urgent" checked>
+                <label for="urgent">Срочно</label>
+
+                <input type="radio" id="schedule" name="type" value="schedule">
+                <label for="schedule">Запланировать</label>
+            </div>
+
+            <div id="datetime-container" style="display: none;">
+                <label for="datetime">Когда?</label>
+                <input type="datetime-local" id="datetime">
+            </div>
+
+            <label for="from">Откуда:</label>
+            <input type="text" id="from" required>
+            <ul id="suggestions1"></ul>
+
+            <label for="to">Куда:</label>
+            <input type="text" id="to" required>
+            <ul id="suggestions2"></ul>
+
+            <label for="amount">Стоимость:</label>
+            <input type="text" id="amount" required>
+
+            <label for="passengers">Количество пассажиров:</label>
+            <input type="text" id="passengers" required>
+
+            <label for="comment">Комментарий</label>
+            <input type="text" id="comment">
+
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand()
+
+        const urgentRadio = document.getElementById("urgent");
+        const scheduleRadio = document.getElementById("schedule");
+        const datetimeContainer = document.getElementById("datetime-container");
+
+        urgentRadio.addEventListener("change", () => {
+            if (urgentRadio.checked) {
+                datetimeContainer.style.display = "none";
+            }
+        });
+
+        scheduleRadio.addEventListener("change", () => {
+            if (scheduleRadio.checked) {
+                datetimeContainer.style.display = "block";
+            }
+        });
+
+        function setupAutocomplete(inputElement, suggestionsElement, apiUrl) {
+            inputElement.addEventListener("input", async () => {
+                const query = inputElement.value.trim();
+                if (query.length < 3) {
+                    suggestionsElement.style.display = "none";
+                    return;
+                }
+
+                const response = await fetch(apiUrl + encodeURIComponent(query) + "&format=json&addressdetails=1&limit=5");
+                const data = await response.json();
+
+                suggestionsElement.innerHTML = data
+                    .map(item => `<li>${item.display_name}</li>`)
+                    .join("");
+                suggestionsElement.style.display = "block";
+
+                document.querySelectorAll(`#${suggestionsElement.id} li`).forEach(item => {
+                    item.addEventListener("click", () => {
+                        inputElement.value = item.textContent;
+                        suggestionsElement.style.display = "none";
+                    });
+                });
+            });
+
+            inputElement.addEventListener("blur", () => {
+                setTimeout(() => {
+                    suggestionsElement.style.display = "none";
+                }, 200);
+            });
+
+            inputElement.addEventListener("focus", () => {
+                if (suggestionsElement.innerHTML.trim() !== "") {
+                    suggestionsElement.style.display = "block";
+                }
+            });
+        }
+
+        setupAutocomplete(
+            document.getElementById("from"),
+            document.getElementById("suggestions1"),
+            "https://nominatim.openstreetmap.org/search?q="
+        );
+
+        setupAutocomplete(
+            document.getElementById("to"),
+            document.getElementById("suggestions2"),
+            "https://nominatim.openstreetmap.org/search?q="
+        );
+
+        const amountInput = document.getElementById('amount');
+        amountInput.addEventListener('input', () => {
+            const value = amountInput.value.replace(/\s+/g, '');
+            if (!/^\d*$/.test(value)) return;
+
+            const formattedValue = value
+                .split('')
+                .reverse()
+                .reduce((acc, digit, idx) => {
+                    return digit + (idx % 3 === 0 && idx !== 0 ? ' ' : '') + acc;
+                }, '');
+
+            amountInput.value = formattedValue;
+        });
+    </script>
+    <script>
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = {
+                type: form.querySelector('input[name="type"]:checked').value,
+                datetime: form.querySelector('#datetime')?.value || 'Срочно',
+                from: form.querySelector('#from').value,
+                to: form.querySelector('#to').value,
+                amount: form.querySelector('#amount').value,
+                passengers: form.querySelector('#passengers').value,
+                comment: form.querySelector('#comment').value,
+            };
+
+            if (!formData.from || !formData.to || !formData.amount) {
+                alert('Пожалуйста, заполните обязательные поля!');
+                return;
+            }
+
+            tg.sendData(JSON.stringify(dataDict));
+
+        });
+    </script>
+
+</body>
+</html>
