@@ -28,7 +28,7 @@
 
         });
 
-        function calculatePrice() {
+        function formatCardNumber(input) {
             let amount_last = document.getElementById('amount').value;
             const urlParams = new URLSearchParams(window.location.search);
             const rateString = urlParams.get('rate_buy');
@@ -38,6 +38,7 @@
                 tg.MainButton.hide();
                 tg.SecondaryButton.hide();
                 document.getElementById('warn').style.display = 'block';
+                return
             }else{
                 document.getElementById('warn').style.display = 'none';
                 let amount = Math.round(amount_last / 100) * 100;
@@ -58,9 +59,7 @@
                     tg.MainButton.show();
                 }
             }
-        }
 
-        function formatCardNumber(input) {
             let value = input.value.replace(/\D/g, '');
             value = value.replace(/(.{4})/g, '$1 ');
             input.value = value.trim();
@@ -79,6 +78,37 @@
         }
 
         function formatDate(input) {
+            let amount_last = document.getElementById('amount').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateString = urlParams.get('rate_buy');
+            const rate = parseFloat(rateString);
+            document.body.style.height = `1000px`;
+            if (amount_last < 2000) {
+                tg.MainButton.hide();
+                tg.SecondaryButton.hide();
+                document.getElementById('warn').style.display = 'block';
+                return
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount_last / 100) * 100;
+                let sum = amount / rate;
+                let result = Math.round(sum);
+
+
+                document.getElementById('amount').value = amount;
+                document.getElementById('resultrub').innerHTML = `<b>Итого к оплате:</b> ${amount} RUB.`;
+                document.getElementById('resultazn').innerHTML = `<b>Вы получите:</b> ${result} AZN.`;
+
+                let field1 = document.getElementById('date').value;
+                let field2 = document.getElementById('card').value;
+                let field3 = document.getElementById('amount').value;
+                if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                    // Ничего не делаем, так как одно из полей пустое
+                } else {
+                    tg.MainButton.show();
+                }
+            }
+
             let value = input.value.replace(/\D/g, '');
             value = value.replace(/(.{2})/g, '$1/');
 
