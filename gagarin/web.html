@@ -32,7 +32,7 @@
 
         .form-container input[type="text"],
         .form-container input[type="datetime-local"] {
-            width: calc(100% - 10px); /* Ширина совпадает с двумя кнопками */
+            width: calc(100% - 10px);
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #dddddd;
@@ -84,7 +84,7 @@
             text-align: center;
             cursor: pointer;
             flex: 1;
-            margin: 0 5px; /* Отступы между кнопками */
+            margin: 0 5px;
         }
 
         .button-group label:hover {
@@ -161,8 +161,7 @@
             <input type="submit" value="Отправить">
         </form>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br>
+
     <script>
         const urgentRadio = document.getElementById("urgent");
         const scheduleRadio = document.getElementById("schedule");
@@ -180,7 +179,9 @@
             }
         });
 
-        function setupAutocomplete(inputElement, suggestionsElement, apiUrl) {
+        const yandexApiKey = '84c65ad1-2ead-4772-bdb8-3d8bbd8817de'; // Замените на ваш API-ключ
+
+        function setupAutocomplete(inputElement, suggestionsElement) {
             inputElement.addEventListener("input", async () => {
                 const query = inputElement.value.trim();
                 if (query.length < 3) {
@@ -188,20 +189,30 @@
                     return;
                 }
 
-                const response = await fetch(apiUrl + encodeURIComponent(query) + "&format=json&addressdetails=1&limit=5");
-                const data = await response.json();
+                try {
+                    const response = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=${yandexApiKey}&format=json&geocode=${encodeURIComponent(query)}`);
+                    const data = await response.json();
 
-                suggestionsElement.innerHTML = data
-                    .map(item => `<li>${item.display_name}</li>`)
-                    .join("");
-                suggestionsElement.style.display = "block";
+                    const suggestions = data.response.GeoObjectCollection.featureMember.map(item => ({
+                        fullAddress: item.GeoObject.metaDataProperty.GeocoderMetaData.text,
+                        shortName: item.GeoObject.name,
+                    }));
 
-                document.querySelectorAll(`#${suggestionsElement.id} li`).forEach(item => {
-                    item.addEventListener("click", () => {
-                        inputElement.value = item.textContent;
-                        suggestionsElement.style.display = "none";
+                    suggestionsElement.innerHTML = suggestions
+                        .map(suggestion => `<li data-full-address="${suggestion.fullAddress}">${suggestion.shortName}</li>`)
+                        .join("");
+                    suggestionsElement.style.display = "block";
+
+                    document.querySelectorAll(`#${suggestionsElement.id} li`).forEach(item => {
+                        item.addEventListener("click", () => {
+                            inputElement.value = item.dataset.fullAddress; // Устанавливаем полный адрес в поле ввода
+                            suggestionsElement.style.display = "none";
+                        });
                     });
-                });
+                } catch (error) {
+                    console.error("Ошибка при запросе данных автозаполнения:", error);
+                    suggestionsElement.style.display = "none";
+                }
             });
 
             inputElement.addEventListener("blur", () => {
@@ -219,14 +230,12 @@
 
         setupAutocomplete(
             document.getElementById("from"),
-            document.getElementById("suggestions1"),
-            "https://nominatim.openstreetmap.org/search?q="
+            document.getElementById("suggestions1")
         );
 
         setupAutocomplete(
             document.getElementById("to"),
-            document.getElementById("suggestions2"),
-            "https://nominatim.openstreetmap.org/search?q="
+            document.getElementById("suggestions2")
         );
 
         const amountInput = document.getElementById('amount');
@@ -244,32 +253,5 @@
             amountInput.value = formattedValue;
         });
     </script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand()
-
-        const form = document.getElementById('form');
-
-        form.addEventListener('submit', (event) => {
-            const formData = {
-                type: form.querySelector('input[name="type"]:checked').value,
-                datetime: form.querySelector('#datetime')?.value || 'Срочно',
-                from: form.querySelector('#from').value,
-                to: form.querySelector('#to').value,
-                amount: form.querySelector('#amount').value,
-                passengers: form.querySelector('#passengers').value,
-                killometers: form.querySelector('#killometers').value,
-                rub_killometers: form.querySelector('#rub_killometers').value,
-                comment: form.querySelector('#comment').value,
-            };
-
-            if (!formData.from || !formData.to || !formData.amount) {
-                alert('Пожалуйста, заполните обязательные поля!');
-                return;
-            }
-            tg.sendData(JSON.stringify(formData));
-            tg.close()
-        });
-    </script>
 </body>
-</html>
+
