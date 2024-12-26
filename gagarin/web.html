@@ -253,5 +253,34 @@
             amountInput.value = formattedValue;
         });
     </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand()
+
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', (event) => {
+            const formData = {
+                type: form.querySelector('input[name="type"]:checked').value,
+                datetime: form.querySelector('#datetime')?.value || 'Срочно',
+                from: form.querySelector('#from').value,
+                to: form.querySelector('#to').value,
+                amount: form.querySelector('#amount').value,
+                passengers: form.querySelector('#passengers').value,
+                killometers: form.querySelector('#killometers').value,
+                rub_killometers: form.querySelector('#rub_killometers').value,
+                comment: form.querySelector('#comment').value,
+            };
+
+            if (!formData.from || !formData.to || !formData.amount) {
+                alert('Пожалуйста, заполните обязательные поля!');
+                return;
+            }
+            tg.sendData(JSON.stringify(formData));
+            tg.close()
+        });
+    </script>
 </body>
 
