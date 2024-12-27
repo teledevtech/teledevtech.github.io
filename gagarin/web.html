@@ -149,8 +149,8 @@
             <input type="text" id="amount" required>
 
             <label for="amount">Километраж:</label>
-            <input type="text" id="rub_killometers" required placeholder="Стоимость 1 км.">
-            <input type="text" id="killometers" required placeholder="Километры">
+            <input type="text" id="rub_killometers" placeholder="Стоимость 1 км.">
+            <input type="text" id="killometers" placeholder="Километры">
 
             <label for="passengers">Количество пассажиров:</label>
             <input type="text" id="passengers" required>
@@ -283,8 +283,8 @@
                 to: form.querySelector('#to').value,
                 amount: form.querySelector('#amount').value,
                 passengers: form.querySelector('#passengers').value,
-                killometers: form.querySelector('#killometers').value,
-                rub_killometers: form.querySelector('#rub_killometers').value,
+                killometers: form.querySelector('#killometers').value || 'None',
+                rub_killometers: form.querySelector('#rub_killometers').value || 'None',
                 comment: form.querySelector('#comment').value,
             };
 
