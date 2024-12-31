@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+  <p id="pr1"></p>
+  <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script>
+      let tg = window.Telegram.WebApp;
+      let user_id = tg.initDataUnsafe.user.id;
+      const document.getElementById('pr1').innerHTML = user_id;
+  </script>
+</body>
+</html>
