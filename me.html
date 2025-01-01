@@ -14,7 +14,7 @@
             font-weight: 400;
             margin: 0;
             padding: 0;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,23 +23,36 @@
 
         .container {
             text-align: center;
-            border-radius: 12px;
-            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
             max-width: 400px;
             width: 90%;
         }
 
+        .container p:first-child {
+            font-weight: 700;
+            font-size: 18px;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
         .container p {
-            margin: 15px 0;
+            margin: 10px 0;
             font-size: 16px;
+            color: #4a4a4a;
         }
 
         .container a {
+            color: #007bff;
             text-decoration: none;
             font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         .container a:hover {
+            color: #0056b3;
             text-decoration: underline;
         }
 
@@ -52,7 +65,6 @@
     <div class="container">
         <p><strong>xxxtfu & TeleDev Technology</strong></p>
         <br>
-        <p>Если вас заинтересовал наш продукт, свяжитесь с нами:)</p>
         <br>
         <div class="telegram-widget">
             <script
@@ -64,7 +76,6 @@
                     data-request-access="write">
             </script>
         </div>
-        <br>
         <p><a href="https://t.me/help_shop_have_bot">@help_shop_have_bot</a></p>
     </div>
 </body>
