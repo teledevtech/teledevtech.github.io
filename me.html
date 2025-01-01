@@ -1,33 +1,73 @@
-<!--<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-</head>
-<body>
-  <p id="pr1"></p>
-  <p id="pr2"></p>
-  <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <script>
-      let tg = window.Telegram.WebApp;
-      document.getElementById('pr1').innerHTML = tg.initDataUnsafe; // Убрано const
-      let user_id = tg.initDataUnsafe.user.id;
-      document.getElementById('pr2').innerHTML = user_id; // Убрано const
-  </script>
-</body>
-</html>
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Help Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .container p {
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        .container a {
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        .telegram-widget {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <p><strong>xxxtfu & TeleDev Technology</strong></p>
+        <div class="telegram-widget">
+            <script async src="https://telegram.org/js/telegram-widget.js?22"
+                data-telegram-login="help_shop_have_bot"
+                data-size="medium"
+                data-radius="8"
+                data-onauth="onTelegramAuth(user)"
+                data-request-access="write">
+            </script>
+        </div>
+        <p>Если вас заинтересовал наш продукт, свяжитесь с нами:</p>
+        <p><a href="https://t.me/help_shop_have_bot">@help_shop_have_bot</a></p>
+    </div>
 
-    <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="help_shop_have_bot" data-size="medium" data-radius="8" data-auth-url="https://teledevtech.github.io/myshops/" data-request-access="write"></script>
-
+    <script type="text/javascript">
+        function onTelegramAuth(user) {
+            alert('Logged in as ' + user.first_name + ' ' + (user.last_name || '') + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+        }
+    </script>
 </body>
 </html>
