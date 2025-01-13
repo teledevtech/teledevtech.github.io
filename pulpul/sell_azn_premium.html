@@ -207,23 +207,23 @@
 <body>
     <div class="container">
         <main>
-            <h1>Satış AZN</h1>
+            <h1>AZN-i RUB-la çevirin</h1>
         </main><br>
         <div>
-            <label>Məbləği <b>AZN-ə</b> daxil edin::</label><br><br>
+            <label>Məbləği <b>AZN-lə</b> daxil edin:</label><br><br>
             <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*" oninput="calculatePrice()"><br>
             <span id="warn" style="display: none; text-align: center; color: red;">Minimum məbləğ - 100 AZN</span>
             <br><br>
             <span id="resultazn"><b>AZN ödəyin:</b></span><br>
             <span id="resultrub"><b>Siz alacaqsınız:</b></span><br>
             <span id="rate"></span><br><br><br>
-            <label><b>Banka bağlı mobil telefon nömrəsini daxil edin</b></label><br>
+            <label><b>Banka bağli olan mobil telefon nömrəsini daxil edin</b></label><br>
             <input style="font-family: 'Open Sans', border-bottom: 1px solid gray; sans-serif;" maxlength="18" id="phoneInput" inputmode="numeric" pattern="[0-9]*" placeholder="+7 (903) 123-45-67" oninput="formatPhoneNumber()"><br><br>
-            <label><b>Alıcının tam adını göstərin</b></label><br>
+            <label><b>Bank hesabin sahibinin ad ve soyadini qeyd edin</b></label><br>
             <input style="font-family: 'Open Sans', border-bottom: 1px solid gray; sans-serif;" id="fullname"><br><br>
-            <label><b>Alıcının bankını göstərin</b></label><br>
+            <label><b>Bankin adini qeyd edin</b></label><br>
             <input style="font-family: 'Open Sans', border-bottom: 1px solid gray; sans-serif;" id="bankget" oninput="formatLAST(this)"><br><br>
-            <p>Bütün sahələr düzgün doldurulubsa, məlumatları yoxlayın"ödəniş" düyməsini vurun</p>
+            <p>Bütün sahələr düzgün doldurulubsa, malumatlari yoxlayin və "Göndər" düyməsini vurun</p><br>
         </div>
     </div>
 </body>
