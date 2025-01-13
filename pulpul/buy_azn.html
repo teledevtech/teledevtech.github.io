@@ -342,6 +342,18 @@
             text-align: center;
         }
 
+        .gopay {
+            display: inline-block;
+            padding: 5px 10px;
+            color: black;
+            font-size: 12px;
+            border: 1px solid gray;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            float: right;
+        }
+
         .rate {
             font-size: 12px;
             color: #666;
@@ -387,7 +399,7 @@
             <div class="button-container">
                 <div class="button" onclick="sendwithpremium()">
                     <div class="text">
-                        <div class="savings">Qənaət: <b id="savings">0</b> ₽</div>
+                        <div class="savings">Qənaət: <b id="savings">0</b> ₽</div><div class="gopay">Göndər</div>
                         <div class="main-text">Məbləği göndərmək və ayda 300₽ abunəliyi qoşmaq </div>
                         <div class="rate">Kurslar: 1 AZN = <del id="mainrate"> RUB.</del> <b style="color:green;" id="premiumrate"> RUB.</b></div>
                         <div class="total">Siz alacaqsınız: <del id="totaldel">0 AZN</del> <b style="color:green;" id="totalwithprem">0 AZN</b></div>
@@ -401,6 +413,7 @@
 
                 <div class="button" onclick="sendwithoutpremium()">
                     <div class="text">
+                        <div class="gopay">Göndər</div>
                         <div class="main-text">Abunəsiz göndərmək</div>
                         <div class="rate" id="mainwithoutrate">Kurslar: 1 ₽ = 62,1853 ₽</div>
                         <div class="total" id="total">Siz alacaqsınız: AZN</div>
