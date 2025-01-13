@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PulPulbot</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand()
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rate_buy = urlParams.get('rate_buy');
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+
+            const rate = parseFloat(rate_buy);
+            document.getElementById('mainrate').innerHTML = `${rate} RUB.`;
+            document.getElementById('mainwithoutrate').innerHTML = `Kurslar: 1 AZN = ${rate} RUB.`;
+            document.getElementById('premiumrate').innerHTML = `${rateStringWithPremium} RUB.`;
+        });
+
+        function formatCardNumber(input) {
+            let amount_last = document.getElementById('amount').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+            const rateStringWithoutPremium = urlParams.get('rate_buy');
+            const rateWithPremium = parseFloat(rateStringWithPremium);
+            const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
+            document.body.style.height = `1000px`;
+            if (amount_last < 2000) {
+                document.getElementById('warn').style.display = 'block';
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount_last / 100) * 100;
+                let sumWithoutPrem = amount / rateWithoutPremium;
+                let resultWithoutPrem = Math.round(sumWithoutPrem);
+                let sumPrem = amount / rateWithPremium;
+                let resultPrem = Math.round(sumPrem);
+
+                document.getElementById('amount').value = amount;
+                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+            }
+
+
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(.{4})/g, '$1 ');
+            input.value = value.trim();
+            if (value.replace(/\s/g, '').length === 16) {
+                document.getElementById('date').focus();
+            }
+
+        }
+
+        function formatDate(input) {
+            let amount_last = document.getElementById('amount').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+            const rateStringWithoutPremium = urlParams.get('rate_buy');
+            const rateWithPremium = parseFloat(rateStringWithPremium);
+            const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
+            document.body.style.height = `1000px`;
+            if (amount_last < 2000) {
+                document.getElementById('warn').style.display = 'block';
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount_last / 100) * 100;
+                let sumWithoutPrem = amount / rateWithoutPremium;
+                let resultWithoutPrem = Math.round(sumWithoutPrem);
+                let sumPrem = amount / rateWithPremium;
+                let resultPrem = Math.round(sumPrem);
+
+                document.getElementById('amount').value = amount;
+                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+            }
+
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(.{2})/g, '$1/');
+
+            if (value.endsWith('/')) {
+                value = value.slice(0, -1);
+            }
+
+            input.value = value;
+
+            if (value.replace(/\//g, '').length === 4) {
+                input.blur();
+            }
+        }
+    </script>
+    <script>
+        function moveToNextInput(currentInputId, nextInputId) {
+            const currentInput = document.getElementById(currentInputId);
+            const nextInput = document.getElementById(nextInputId);
+
+            if (currentInput.value) {
+                nextInput.focus();
+            }
+        }
+    </script>
+    <script>
+        function sendwithoutpremium() {
+                    let amount_last = document.getElementById('amount').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+            const rateStringWithoutPremium = urlParams.get('rate_buy');
+            const rateWithPremium = parseFloat(rateStringWithPremium);
+            const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
+            document.body.style.height = `1000px`;
+            if (amount_last < 2000) {
+                document.getElementById('warn').style.display = 'block';
+                return
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount_last / 100) * 100;
+                let sumWithoutPrem = amount / rateWithoutPremium;
+                let resultWithoutPrem = Math.round(sumWithoutPrem);
+                let sumPrem = amount / rateWithPremium;
+                let resultPrem = Math.round(sumPrem);
+
+                document.getElementById('amount').value = amount;
+                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+            }
+
+
+            let field1 = document.getElementById('date').value;
+            let field2 = document.getElementById('card').value;
+            let field3 = document.getElementById('amount').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                alert('Bütün sahələri doldurun!');
+            } else {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateString = urlParams.get('rate_buy');
+                const rate = parseFloat(rateString);
+                let sum = amount / rate;
+                let result = Math.round(sum);
+
+                const dataDict = {
+                    type: "buy",
+                    premium: "NO",
+                    card: card,
+                    date: date,
+                    azn: result,
+                    rub: amount
+                };
+                tg.sendData(JSON.stringify(dataDict));
+            }
+        }
+        function sendwithpremium() {
+            let amount_last = document.getElementById('amount').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const rateStringWithPremium = urlParams.get('rate_buy_premium');
+            const rateStringWithoutPremium = urlParams.get('rate_buy');
+            const rateWithPremium = parseFloat(rateStringWithPremium);
+            const rateWithoutPremium = parseFloat(rateStringWithoutPremium);
+            document.body.style.height = `1000px`;
+            if (amount_last < 2000) {
+                document.getElementById('warn').style.display = 'block';
+                return
+            }else{
+                document.getElementById('warn').style.display = 'none';
+                let amount = Math.round(amount_last / 100) * 100;
+                let sumWithoutPrem = amount / rateWithoutPremium;
+                let resultWithoutPrem = Math.round(sumWithoutPrem);
+                let sumPrem = amount / rateWithPremium;
+                let resultPrem = Math.round(sumPrem);
+
+                document.getElementById('amount').value = amount;
+                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+            }
+
+
+            let field1 = document.getElementById('date').value;
+            let field2 = document.getElementById('card').value;
+            let field3 = document.getElementById('amount').value;
+            if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+                alert('Bütün sahələri doldurun!');
+            } else {
+                let card = document.getElementById('card').value;
+                let date = document.getElementById('date').value;
+                let amount = document.getElementById('amount').value;
+                const urlParams = new URLSearchParams(window.location.search);
+                const rateStringWithPremium = urlParams.get('rate_buy_premium');
+                const rate = parseFloat(rateStringWithPremium);
+                let sum = amount / rate;
+                let result = Math.round(sum);
+
+                const dataDict = {
+                    type: "buy",
+                    premium: "YES",
+                    card: card,
+                    date: date,
+                    azn: result,
+                    rub: amount
+                };
+                tg.sendData(JSON.stringify(dataDict));
+            }
+        }
+    </script>
+    <style>
+        .details span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .savings-container {
+            display: inline-block;
+            padding: 6px 18px;
+            background-color: green;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            top:-30px; left:-200px;
+        }
+
+        .savings-container::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px;
+            border-style: solid;
+            border-color: green transparent transparent transparent;
+        }
+        .resultrubm{text-align: left;padding: 0px 0px 0px 100px;}
+        .rate1{text-align: left;padding: 0px 0px 0px 100px;}
+        .topay{text-align: left;padding: 0px 0px 0px 100px;}
+        .head {text-align: left;padding: 0px 0px 0px 100px;}
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('https://teledevtech.github.io/photo.jpg');
+            color: black;
+            background-position: center;
+            background-size: 700px;
+            color: black;
+            margin: 0;
+            padding: 20px;
+            font-size: 15px;
+        }
+        main {
+            text-align: center;
+            font-size: 15px;
+        }
+        input {
+            color: black;
+            border: 0px;
+            font-size: 16px;
+            background-color: transparent;
+        }
+        input:focus {
+            outline: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+        #selllink {
+            text-decoration: none;
+            color: inherit;
+            background: #ff4a4a;
+        }
+        .fw {
+            text-align: right;
+            width: 100%;
+        }
+    </style>
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: transparent;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .button .text {
+            flex: 1;
+        }
+
+        .button .text span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button .text .main-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .button .icon {
+            margin-left: 10px;
+            font-size: 24px;
+            color: #999;
+        }
+
+        .savings {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .rate {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .total {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .total span {
+            color: #28a745;
+        }
+        .icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #ff0000;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover .icon svg {
+            transform: scale(1.6);
+            fill: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main>
+            <h1>AZN almaq</h1>
+        </main><br>
+        <div>
+          <label>Məbləği <b>RUB-a</b> daxil edin:</label><br><br>
+            <input style="font-size:16px; font-family: 'Open Sans', sans-serif; border-bottom: 1px solid gray;width:100%;text-align:center;" id="amount" inputmode="numeric" pattern="[0-9]*"><br>
+            <span id="warn" style="display: none; text-align: center; color: red;">Minimum məbləğ - 2000 RUB</span>
+            <br><br>
+            <label><b>AZN almaq üçün Azərbaycan kartının nömrəsini daxil edin:</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="19" id="card" inputmode="numeric" pattern="[0-9]*" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)"><br><br>
+            <label><b>Kartın etibarlılıq müddətini daxil edin:</b></label><br>
+            <input style="border-bottom: 1px solid gray; font-family: 'Open Sans', sans-serif;" maxlength="5" id="date" inputmode="numeric" pattern="[0-9]*" placeholder="MM/YY" oninput="formatDate(this)"><br><br>
+            <p>Bütün sahələr düzgün doldurulubsa, məlumatları yoxlayın "ödəniş" düyməsini vurun</p><br>
+
+            <div class="button-container">
+                <div class="button" onclick="sendwithpremium()">
+                    <div class="text">
+                        <div class="savings">Qənaət: <b id="savings">0</b> ₽</div>
+                        <div class="main-text">Ayda 300 RUB üçün abunə göndərin və qoşun</div>
+                        <div class="rate">Kurslar: 1 AZN = <del id="mainrate"> RUB.</del> <b style="color:green;" id="premiumrate"> RUB.</b></div>
+                        <div class="total">Siz alacaqsınız: <del id="totaldel">0 AZN</del> <b style="color:green;" id="totalwithprem">0 AZN</b></div>
+                    </div>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="50px" height="50px">
+                            <path d="M10 6l6 6-6 6V6z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="button" onclick="sendwithoutpremium()">
+                    <div class="text">
+                        <div class="main-text">Abunə olmadan göndərin</div>
+                        <div class="rate" id="mainwithoutrate">Kurslar: 1 ₽ = 62,1853 ₽</div>
+                        <div class="total" id="total">Siz alacaqsınız: AZN</div>
+                    </div>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="50px" height="50px">
+                            <path d="M10 6l6 6-6 6V6z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
