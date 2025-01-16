@@ -16,7 +16,7 @@
         function roundUpToNearest(value) {
             let roundedTo50 = Math.ceil(value / 50) * 50;
             let roundedTo100 = Math.ceil(value / 100) * 100;
-          
+
             return Math.min(roundedTo50, roundedTo100);
         }
 
@@ -26,9 +26,9 @@
             const rate_sell_StringWithPremium = urlParams.get('rate_sell_premium');
 
             const rate = parseFloat(rate_sell);
-            document.getElementById('mainrate').innerHTML = `${rate} руб.`;
+            // document.getElementById('mainrate').innerHTML = `${rate} руб.`;
             document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} руб.`;
-            document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rate_sell_StringWithPremium} руб.`;
+            // document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rate_sell_StringWithPremium} руб.`;
         });
 
         function calculatePrice() {
@@ -51,10 +51,10 @@
                 let resultPrem = roundUpToNearest(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                document.getElementById('savings').innerHTML = Math.round(resultPrem - resultWithoutPrem);
+                // document.getElementById('savings').innerHTML = Math.round(resultPrem - resultWithoutPrem);
                 document.getElementById('total').innerHTML = `${resultWithoutPrem} руб.`;
-                document.getElementById('totalwithprem').innerHTML = `${resultPrem} руб.`;
-                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} руб.`;
+                // document.getElementById('totalwithprem').innerHTML = `${resultPrem} руб.`;
+                // document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} руб.`;
             }
         }
 
@@ -95,7 +95,7 @@
             } else {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_sell');
-                const rate = parseFloat(rateString);                
+                const rate = parseFloat(rateString);
                 let sum = parseFloat(field1) * rate;
                 let result = roundUpToNearest(sum);
 
@@ -112,7 +112,7 @@
             }
         }
 
-        function sendwithpremium() {
+        /* function sendwithpremium() {
             let field1 = document.getElementById('amount').value;
             let field2 = document.getElementById('fullname').value;
             let field3 = document.getElementById('phoneInput').value;
@@ -137,8 +137,8 @@
                 };
                 tg.sendData(JSON.stringify(dataDict));
             }
-        }
-        
+        }*/
+
     </script>
     <style>
         body {
@@ -163,7 +163,7 @@
             background-color: transparent;
             border: 0;
             border-bottom: 1px solid #000;
-            outline: 0;  
+            outline: 0;
         }
         input:focus {
             outline: none;
