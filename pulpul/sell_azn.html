@@ -26,9 +26,9 @@
             const rate_sell_StringWithPremium = urlParams.get('rate_sell_premium');
 
             const rate = parseFloat(rate_sell);
-            document.getElementById('mainrate').innerHTML = `${rate} RUB.`;
-            document.getElementById('mainwithoutrate').innerHTML = `Kurslar: 1 AZN = ${rate} RUB.`;
-            document.getElementById('premiumrate').innerHTML = `Kurslar: 1 AZN = ${rate_sell_StringWithPremium} RUB.`;
+            // document.getElementById('mainrate').innerHTML = `${rate} RUB`;
+            document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} RUB`;
+            // document.getElementById('premiumrate').innerHTML = `Курс: 1 AZN = ${rate_sell_StringWithPremium} RUB`;
         });
 
         function calculatePrice() {
@@ -51,10 +51,10 @@
                 let resultPrem = roundUpToNearest(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                document.getElementById('savings').innerHTML = Math.round(resultPrem - resultWithoutPrem);
-                document.getElementById('total').innerHTML = `${resultWithoutPrem} RUB.`;
-                document.getElementById('totalwithprem').innerHTML = `${resultPrem} RUB.`;
-                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} RUB.`;
+                // document.getElementById('savings').innerHTML = Math.round(resultPrem - resultWithoutPrem);
+                document.getElementById('total').innerHTML = `<b>Siz alacaqsınız</b>: ${resultWithoutPrem} RUB`;
+                // document.getElementById('totalwithprem').innerHTML = `${resultPrem} RUB`;
+                // document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} RUB`;
             }
         }
 
@@ -91,7 +91,7 @@
             let field3 = document.getElementById('phoneInput').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                alert('Bütün sahələri doldurun!');
+                alert('Заполните все поля!');
             } else {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_sell');
@@ -112,13 +112,13 @@
             }
         }
 
-        function sendwithpremium() {
+        /* function sendwithpremium() {
             let field1 = document.getElementById('amount').value;
             let field2 = document.getElementById('fullname').value;
             let field3 = document.getElementById('phoneInput').value;
             let field4 = document.getElementById('bankget').value;
             if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '' || field4.trim() === '') {
-                alert('Bütün sahələri doldurun!');
+                alert('Заполните все поля!');
             } else {
                 const urlParams = new URLSearchParams(window.location.search);
                 const rateString = urlParams.get('rate_sell_premium');
@@ -137,7 +137,7 @@
                 };
                 tg.sendData(JSON.stringify(dataDict));
             }
-        }
+        }*/
 
     </script>
     <style>
@@ -173,19 +173,6 @@
             margin: 0 auto;
             padding: 25px;
         }
-
-        .gopay {
-            display: inline-block;
-            padding: 5px 10px;
-            color: black;
-            font-size: 12px;
-            border: 1px solid gray;
-            border-radius: 20px;
-            margin-bottom: 10px;
-            text-align: center;
-            float: right;
-        }
-        
         #fullname {
             width: 100%;
         }
@@ -279,6 +266,18 @@
             transform: scale(1.6);
             fill: #ff0000;
         }
+
+        .gopay {
+            display: inline-block;
+            padding: 5px 10px;
+            color: black;
+            font-size: 12px;
+            border: 1px solid gray;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -302,9 +301,9 @@
             <div class="button-container">
                 <!--<div class="button" onclick="sendwithpremium()">
                     <div class="text">
-                        <div class="savings">Qənaət: <b id="savings">0</b> ₽</div><div class="gopay">Göndər</div>
-                        <div class="main-text">Məbləği göndərmək və ayda 300₽ abunəliyi qoşmaq</div>
-                        <div class="rate">Курс: 1 AZN = <del id="mainrate"> RUB.</del> <b style="color:green;" id="premiumrate"> RUB</b></div>
+                        <div class="savings">Экономия: <b id="savings">0</b> ₽</div><div class="gopay">Оплатить</div>
+                        <div class="main-text">Отправить и подключить Абонемент за 300 ₽ в месяц</div>
+                        <div class="rate">Курс: 1 AZN = <del id="mainrate"> руб.</del> <b style="color:green;" id="premiumrate"> руб.</b></div>
                         <div class="total">Вы получите: <del id="totaldel">0 AZN</del> <b style="color:green;" id="totalwithprem">0 AZN</b></div>
                     </div>
                     <div class="icon">
