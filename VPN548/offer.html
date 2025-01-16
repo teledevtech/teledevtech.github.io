@@ -70,6 +70,15 @@
             }
         }
     </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.BackButton.show();
+        tg.BackButton.onClick(() => {
+            window.location.href = 'https://teledevtech.github.io/VPN548/help.html';
+        });
+    </script>
 </head>
 <body>
     <header>
