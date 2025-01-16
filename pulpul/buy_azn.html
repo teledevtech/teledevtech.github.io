@@ -19,8 +19,8 @@
 
             const rate = parseFloat(rate_buy);
             document.getElementById('mainrate').innerHTML = `${rate} RUB.`;
-            document.getElementById('mainwithoutrate').innerHTML = `Kurslar: 1 AZN = ${rate} RUB.`;
-            document.getElementById('premiumrate').innerHTML = `${rateStringWithPremium} RUB.`;
+            /*document.getElementById('mainwithoutrate').innerHTML = `Kurslar: 1 AZN = ${rate} RUB.`;*/
+            /*document.getElementById('premiumrate').innerHTML = `${rateStringWithPremium} RUB.`;*/
         });
 
         function formatCardNumber(input) {
@@ -42,8 +42,8 @@
                 let resultPrem = Math.round(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
-                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                // document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                // document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
                 document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
                 document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
@@ -77,8 +77,8 @@
                 let resultPrem = Math.round(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
-                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                // document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                // document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
                 document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
                 document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
@@ -128,8 +128,8 @@
                 let resultPrem = Math.round(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
-                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                // document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                // document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
                 document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
                 document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
@@ -161,7 +161,7 @@
                 tg.sendData(JSON.stringify(dataDict));
             }
         }
-        function sendwithpremium() {
+        /* function sendwithpremium() {
             let amount_last = document.getElementById('amount').value;
             const urlParams = new URLSearchParams(window.location.search);
             const rateStringWithPremium = urlParams.get('rate_buy_premium');
@@ -213,7 +213,7 @@
                 };
                 tg.sendData(JSON.stringify(dataDict));
             }
-        }
+        }*/
     </script>
     <style>
         .details span {
