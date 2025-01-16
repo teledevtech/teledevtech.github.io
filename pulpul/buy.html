@@ -18,9 +18,9 @@
             const rateStringWithPremium = urlParams.get('rate_buy_premium');
 
             const rate = parseFloat(rate_buy);
-            /*document.getElementById('mainrate').innerHTML = `${rate} руб.`;*/
+            //document.getElementById('mainrate').innerHTML = `${rate} руб.`;
             document.getElementById('mainwithoutrate').innerHTML = `Курс: 1 AZN = ${rate} руб.`;
-            /*document.getElementById('premiumrate').innerHTML = `${rateStringWithPremium} руб.`;*/
+            //document.getElementById('premiumrate').innerHTML = `${rateStringWithPremium} руб.`;
         });
 
         function formatCardNumber(input) {
@@ -42,10 +42,10 @@
                 let resultPrem = Math.round(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                /*document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);*/
-                /*document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;*/
-                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
-                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+                //document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `<b>Вы получите</b>: ${resultWithoutPrem} AZN.`;
+                //document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                //document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
 
 
@@ -77,10 +77,10 @@
                 let resultPrem = Math.round(sumPrem);
 
                 document.getElementById('amount').value = amount;
-                /*document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);*/
-                /*document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;*/
-                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
-                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+                //document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
+                document.getElementById('total').innerHTML = `<b>Вы получите</b>: ${resultWithoutPrem} AZN.`;
+                //document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                //document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
 
             let value = input.value.replace(/\D/g, '');
@@ -129,9 +129,9 @@
 
                 document.getElementById('amount').value = amount;
                 /*document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);*/
-                /*document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;*/
-                document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
-                document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
+                document.getElementById('total').innerHTML = `<b>Вы получите</b>: ${resultWithoutPrem} AZN.`;
+                //document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
+                //document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
 
 
@@ -182,7 +182,7 @@
 
                 document.getElementById('amount').value = amount;
                 document.getElementById('savings').innerHTML = Math.round((resultPrem - resultWithoutPrem) * rateWithoutPremium);
-                document.getElementById('total').innerHTML = `${resultWithoutPrem} AZN.`;
+                document.getElementById('total').innerHTML = `<b>Вы получите</b>: ${resultWithoutPrem} AZN.`;
                 document.getElementById('totalwithprem').innerHTML = `${resultPrem} AZN.`;
                 document.getElementById('totaldel').innerHTML = `${resultWithoutPrem} AZN.`;
             }
