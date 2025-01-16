@@ -10,32 +10,22 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f7fa;
             color: #333;
         }
         header {
             background: linear-gradient(90deg, #2D83EC, #1AC9FF);
             color: white;
-            padding: 12px 20px;
+            padding: 10px 20px;
             text-align: center;
-            font-size: 1.5em;
         }
         .container {
-            max-width: 100%;
-            margin: 10px auto;
-            padding: 15px;
+            margin: 20px auto;
+            padding: 20px;
             background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            font-size: 1em;
         }
         h1, h2 {
             color: #0098EA;
-            font-size: 1.2em;
-        }
-        p, ul {
-            margin-bottom: 15px;
-            font-size: 0.95em;
         }
         ul {
             padding-left: 20px;
@@ -57,56 +47,33 @@
             text-decoration: underline;
         }
 
-        /* Мобильная адаптация */
-        @media (max-width: 768px) {
-            header {
-                font-size: 1.2em;
-                padding: 10px;
+        /* Медиазапрос для увеличения размера шрифта и отступов на мобильных устройствах */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
             }
-            .container {
-                margin: 10px;
-                padding: 10px;
-                font-size: 0.9em;
+            h1 {
+                font-size: 28px;
             }
-            h1, h2 {
-                font-size: 1.1em;
+            h2 {
+                font-size: 18px;
             }
-            p, ul {
-                font-size: 0.9em;
+            footer {
+                font-size: 1em;
             }
         }
 
-        /* Дополнительные стили для маленьких экранов */
-        @media (max-width: 480px) {
-            header {
-                font-size: 1.1em;
-                padding: 8px;
-            }
+        /* Медиазапрос для больших экранов (планшеты и компьютеры) */
+        @media (min-width: 601px) {
             .container {
-                margin: 5px;
-                padding: 8px;
-            }
-            h1, h2 {
-                font-size: 1em;
-            }
-            p, ul {
-                font-size: 0.85em;
+                margin: 20px 50px; /* Добавлен отступ по бокам для больших экранов */
             }
         }
     </style>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand();
-        tg.BackButton.show();
-        tg.BackButton.onClick(() => {
-            window.location.href = 'https://teledevtech.github.io/VPN548/help.html';
-        });
-    </script>
 </head>
 <body>
     <header>
-        <h1>Публичная оферта</h1>
+        <h1 style="color:white;">Публичная оферта</h1>
     </header>
     <div class="container">
         <h2>Общие положения</h2>
