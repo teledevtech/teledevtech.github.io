@@ -27,7 +27,7 @@
       background: var(--tg-theme-bg-color);
       border-radius: 15px;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-      border: 2px solid var(--tg-theme-section-bg-color);
+      border: 2px solid var(--tg-theme-section-separator-color);
     }
 
     .logo {
@@ -73,7 +73,7 @@
 
     .input-field {
       background-color: var(--tg-theme-bg-color);
-      border: 1px solid var(--tg-theme-section-bg-color);
+      border: 1px solid var(--tg-theme-section-separator-color);
       color: var(--tg-theme-text-color);
       padding: 15px;
       border-radius: 12px;
@@ -84,7 +84,7 @@
 
     .input-field:focus {
       outline: none;
-      border-color: var(--tg-theme-section-bg-color);
+      border-color: var(--tg-theme-section-separator-color);
     }
 
     .info {
@@ -110,7 +110,7 @@
     }
 
     .toggle-theme button:hover {
-      color: 1px solid var(--tg-theme-section-bg-color);
+      color: 1px solid var(--tg-theme-section-separator-color);
     }
 
     .links {
@@ -193,7 +193,7 @@
 
     .select-field {
       background-color: var(--tg-theme-bg-color);
-      border: 1px solid var(--tg-theme-section-bg-color);
+      border: 1px solid var(--tg-theme-section-separator-color);
       padding: 12px;
       border-radius: 12px;
       margin-top: 20px;
@@ -204,7 +204,7 @@
 
     .select-field:focus {
       outline: none;
-      border-color: var(--tg-theme-section-bg-color);
+      border-color: var(--tg-theme-section-separator-color);
     }
   </style>
 </head>
@@ -216,7 +216,7 @@
     <input type="text" class="input-field" placeholder="Введите ваш username" id="username">
 
     <label for="stars" style="color: #fff; margin-top: 20px;">Количество звезд:</label>
-    <input type="number" class="select-field" placeholder="Введите количество Telegram Stars" id="stars">
+    <input type="number" class="input-field" placeholder="Введите количество Telegram Stars" id="stars">
 
     <label for="payment" style="color: #fff; margin-top: 20px;">Метод оплаты:</label>
     <select id="payment" class="select-field">
