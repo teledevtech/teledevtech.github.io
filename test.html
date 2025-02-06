@@ -217,19 +217,9 @@
 
     <label for="stars" style="color: #fff; margin-top: 20px;">Количество звезд:</label>
     <input type="number" class="input-field" placeholder="Введите количество Telegram Stars" id="stars">
-
-    <label for="payment" style="color: #fff; margin-top: 20px;">Метод оплаты:</label>
-    <select id="payment" class="select-field">
-      <option value="Crypto Bot">Crypto Bot</option>
-      <option value="TON Connect">TON Connect</option>
-    </select>
-
+    
     <button class="button" id="buyButton">Купить Telegram Stars</button>
-
-    <div class="info">
-      <p>Метод оплаты: <span id="paymentMethod">Crypto Bot</span></p>
-    </div>
-
+    
     <div class="history">
       <h3>История покупок:</h3>
       <ul id="purchaseHistory">
@@ -283,8 +273,6 @@
     const buyButton = document.getElementById('buyButton');
     const usernameInput = document.getElementById('username');
     const starsSelect = document.getElementById('stars');
-    const paymentSelect = document.getElementById('payment');
-    const paymentMethod = document.getElementById('paymentMethod');
     const purchaseHistoryElement = document.getElementById('purchaseHistory');
 
     const profileModal = document.getElementById('profileModal');
@@ -319,18 +307,12 @@
     closeHelpModal.addEventListener('click', () => helpModal.style.display = 'none');
     closeSupportModal.addEventListener('click', () => supportModal.style.display = 'none');
 
-    paymentSelect.addEventListener('change', () => {
-      paymentMethod.textContent = paymentSelect.value;
-    });
-
     buyButton.addEventListener('click', () => {
       const username = usernameInput.value.trim();
       const stars = starsSelect.value;
-      const payment = paymentSelect.value;
 
       if (username && stars) {
         const newPurchase = document.createElement('li');
-        newPurchase.textContent = `Покупка ${stars} звезды для ${username} с использованием ${payment}`;
         purchaseHistoryElement.appendChild(newPurchase);
         usernameInput.value = '';
         starsSelect.value = '';
